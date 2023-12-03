@@ -21,6 +21,10 @@ import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import VueFormWizard from "vue3-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 
+//shared
+import GForm from './components/form/index.vue';
+import GField from './components/form/inputs/field.vue';
+import i18n from '@/libs/i18n';
 /*********Header component**********/
 import Header from './views/layouts/header.vue'
 import Headertwo from './views/layouts/header-two.vue'
@@ -133,9 +137,13 @@ app.component('vue3-autocounter', Vue3Autocounter)
 app.component(VueFeather.name, VueFeather);
 app.component('star-rating', StarRating)
 app.component('SummernoteEditor', SummernoteEditor);
+//shaared
+app.component('gform',GForm);
+app.component('gfield', GField);
 app.use(Toaster, {
     position: "top-right",
   });
+  app.use(i18n);
 app.use(CoolLightBox);
 app.use(VueSweetalert2)
 app.use(VueEasyLightbox);

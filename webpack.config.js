@@ -85,6 +85,7 @@ module.exports = (env = {}) => ({
       'vue': 'vue/dist/vue.esm-bundler.js',
       'vue': '@vue/runtime-dom',
       'bootstrap-vue$': 'bootstrap-vue/src/index.js',
+      '@': path.resolve(__dirname, 'src/views/'),
       Assets: path.resolve(__dirname, 'src/assets/'),
     }
   },
