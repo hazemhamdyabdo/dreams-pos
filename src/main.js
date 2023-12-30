@@ -1,7 +1,11 @@
 import { createApp } from 'vue';
+// import apps from './app';
+import store from './store/app';
 import { router } from './router';
 import App from "./App.vue";
-import {BootstrapVue3, BToastPlugin} from 'bootstrap-vue-3'
+// mixin
+import SomeMixin from './mixin/global';
+import { BootstrapVue3, BToastPlugin } from 'bootstrap-vue-3'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import FlagIcon from 'vue-flag-icon';
@@ -10,11 +14,11 @@ import DatePicker from 'vue3-datepicker'
 import Vue3Autocounter from 'vue3-autocounter';
 import Toaster from '@meforma/vue-toaster'
 import SummernoteEditor from 'vue3-summernote-editor';
-import VueSweetalert2 from 'vue-sweetalert2' 
+import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css';
 import StarRating from 'vue-star-rating'
 import VueFeather from 'vue-feather';
-import VueApexCharts from "vue3-apexcharts"; 
+import VueApexCharts from "vue3-apexcharts";
 import VueEasyLightbox from "vue-easy-lightbox";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
@@ -25,6 +29,8 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import GForm from './components/form/index.vue';
 import GField from './components/form/inputs/field.vue';
 import i18n from '@/libs/i18n';
+import axiosIns from '@/libs/axios';
+import '@validations';
 /*********Header component**********/
 import Header from './views/layouts/header.vue'
 import Headertwo from './views/layouts/header-two.vue'
@@ -72,8 +78,8 @@ import 'bootstrap/dist/css/bootstrap.rtl.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import'./assets/plugins/summernote/dist/summernote-lite.min.css';
-import'./assets/plugins/summernote/dist/summernote-lite.min.js';
+import './assets/plugins/summernote/dist/summernote-lite.min.css';
+import './assets/plugins/summernote/dist/summernote-lite.min.js';
 import 'ionicons-npm/css/ionicons.css';
 import 'material-icons/css/material-icons.min.css';
 import 'material-icons/css/material-icons.css';
@@ -84,7 +90,13 @@ import './assets/css/vue-form-wizard.css';
 import './assets/css/style.css';
 import swal from 'sweetalert2';
 window.Swal = swal;
-const app = createApp(App)
+// const store = createStore({
+//   modules: {
+//     apps,
+//   },
+//   strict: process.env.DEV,
+// });
+const app = createApp(App);
 /*********Header component**********/
 app.component('layouts', Header)
 app.component('layoutstwo', Headertwo)
@@ -138,20 +150,31 @@ app.component(VueFeather.name, VueFeather);
 app.component('star-rating', StarRating)
 app.component('SummernoteEditor', SummernoteEditor);
 //shaared
-app.component('gform',GForm);
+app.component('gform', GForm);
 app.component('gfield', GField);
 app.use(Toaster, {
-    position: "top-right",
-  });
-  app.use(i18n);
+  position: "top-right",
+});
+app.mixin(SomeMixin);
+app.provide('$http', axiosIns);
+app.use(i18n);
+
+// app.use(axiosPlugin);
+app.use(store);
+// Check if Vuex is installed
+const isVuexInstalled = app.config.globalProperties.$store !== undefined;
+
+// Output whether Vuex is installed or not
+console.log('Is Vuex installed?', isVuexInstalled);
 app.use(CoolLightBox);
 app.use(VueSweetalert2)
 app.use(VueEasyLightbox);
 app.use(VueApexCharts)
 app.use(FlagIcon)
-.use(VueFormWizard)
-.use(Antd)
-.use(BootstrapVue3)
-.use(BToastPlugin)
-app.use(router).mount('#app');
+  .use(VueFormWizard)
+  .use(Antd)
+  .use(BootstrapVue3)
+  .use(BToastPlugin)
+app.use(router)
+app.mount('#app');
 

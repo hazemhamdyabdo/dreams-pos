@@ -1,23 +1,21 @@
 <template>
-  <!-- <validation-observer ref="simpleRules"> -->
-    <b-form
+    <Form
       v-bind="$attrs"
-      @keyup.enter.prevent
-      novalidate
+      @submit="validationForm"
+      ref="simpleRules"
     >
       <slot />
-    </b-form>
-  <!-- </validation-observer> -->
+    </Form>
 </template>
 
 <script>
-// import { ValidationObserver } from 'vee-validate'
+import { Form } from 'vee-validate'
 
-// import '@validations'
+import '@validations'
 
 export default {
   components: {
-    // ValidationObserver,
+    Form
   },
   emits: ['update:isValid', 'submit'],
   props: {
@@ -27,7 +25,7 @@ export default {
     },
   },
   mounted() {
-  //  this.$refs.simpleRules.validate;
+   this.$refs.simpleRules.validate();
   },
   methods: {
     validationForm() {

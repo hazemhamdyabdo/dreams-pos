@@ -86,6 +86,7 @@ module.exports = (env = {}) => ({
       'vue': '@vue/runtime-dom',
       'bootstrap-vue$': 'bootstrap-vue/src/index.js',
       '@': path.resolve(__dirname, 'src/views/'),
+      '@core': path.resolve(__dirname, 'src/@core'),
       Assets: path.resolve(__dirname, 'src/assets/'),
     }
   },
