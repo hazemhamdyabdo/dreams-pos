@@ -52,27 +52,8 @@ import PageaddHeader from './components/pageheader/pageaddheader.vue'
 import breadcrumb from './components/pageheader/breadcrumb.vue'
 /*********Dashboard**********/
 import DashboardPage from './views/pages/dashboard/indexpage.vue'
-import Searchpart from './views/pages/charts/searchpart.vue'
-import Addressform from './views/pages/forms/horizontal/addressform'
-import Basicform from './views/pages/forms/horizontal/basicform'
-import Personaldetail from './views/pages/forms/horizontal/personaldetail'
-import Personalinformation from './views/pages/forms/horizontal/personalinformation'
-import SupplierPaymentreport from './views/pages/report/supplierreport/payment'
-import Supplierreturnreport from './views/pages/report/supplierreport/return'
-import Contexttable from './views/pages/table/contexttable'
 
 /*********Modal component**********/
-import SalesListModal from './views/pages/sales/saleslistmodal.vue'
-import SupplierListmodal from './views/pages/people/supplierlistmodal.vue'
-import Userlistmodal from './views/pages/people/userlistmodal.vue'
-import StateListmodal from './views/pages/places/statelistmodal.vue'
-import StoreListmodal from './views/pages/places/storelistmodal.vue'
-import CountrylistModal from './views/pages/places/countrylist/countrylistmodal.vue'
-import CalendarModal from './views/pages/application/calendar/calendarmodal.vue'
-import CurrencysettingsModal from './views/pages/settings/currencysetting/currencysettingsmodal'
-import paymentsetmodal from './views/pages/settings/paymentsetmodal'
-import TaxrateSmodal from './views/pages/settings/taxratesmodal'
-import POSmodal from './views/pages/pos/posmodal.vue'
 
 import 'bootstrap/dist/css/bootstrap.rtl.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -118,29 +99,9 @@ app.component('pageheader', PageHeader)
 app.component('pageaddheader', PageaddHeader)
 app.component('breadcrumb', breadcrumb)
 
-/*********Modal component**********/
-app.component('saleslistmodal', SalesListModal);
-app.component('supplierlistmodal', SupplierListmodal);
-app.component('userlistmodal', Userlistmodal);
-app.component('statelistmodal', StateListmodal);
-app.component('storelistmodal', StoreListmodal);
-app.component('countrylistmodal', CountrylistModal);
-app.component('calendarmodal', CalendarModal);
-app.component('currencysettingsmodal', CurrencysettingsModal);
-app.component('paymentsetmodal', paymentsetmodal);
-app.component('taxratesmodal', TaxrateSmodal);
-app.component('posmodal', POSmodal);
 
 /*********Dashboard**********/
 app.component('indexpage', DashboardPage);
-app.component('searchpart', Searchpart)
-app.component('personaldetail', Personaldetail);
-app.component('personalinformation', Personalinformation);
-app.component('payment', SupplierPaymentreport);
-app.component('return', Supplierreturnreport);
-app.component('addressform', Addressform);
-app.component('basicform', Basicform);
-app.component('contexttable', Contexttable);
 
 
 app.component('vue-select', VueSelect);

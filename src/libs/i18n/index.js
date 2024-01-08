@@ -24,7 +24,7 @@ function loadLocaleMessages() {
 //   messages: loadLocaleMessages(),
 // });
 const i18n = createI18n({
-  locale: 'en', // Set the initial locale
+  locale: 'ar', // Set the initial locale
   messages: loadLocaleMessages(),
 });
 

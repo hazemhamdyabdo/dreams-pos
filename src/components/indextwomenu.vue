@@ -56,7 +56,42 @@
                   </li>
                 </ul>
               </li>
-              <li class="submenu-open">
+              <li class="submenu">
+                    <a
+                      v-bind:class="transferMenu ? 'active' : 'notactive'"
+                      href="#sidebarTransfer"
+                      data-bs-toggle="collapse"
+                      role="button"
+                      aria-expanded="false"
+                      aria-controls="sidebarTransfer"
+                      v-on:click="transferMenu = !transferMenu"
+                      ><vue-feather type="shuffle"></vue-feather><span>$t("save")</span
+                      ><span class="menu-arrow"></span
+                    ></a>
+                    <ul class="collapse menu-dropdown" id="sidebarTransfer">
+                      <li>
+                        <router-link
+                          :class="
+                            currentPath == 'transferlist' || currentPath == 'edittransfer'
+                              ? 'active'
+                              : 'notactive'
+                          "
+                          to="transferlist"
+                          >Transfer List</router-link
+                        >
+                      </li>
+                      <li>
+                        <router-link
+                          :class="
+                            currentPath == 'importtransfer' ? 'active' : 'notactive'
+                          "
+                          to="importtransfer"
+                          >Import Transfer
+                        </router-link>
+                      </li>
+                    </ul>
+                  </li>
+              <li class="submenu">
                 <h6 class="submenu-hdr">Products</h6>
                 <ul>
                   <li>
@@ -190,7 +225,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarTransfer"
                       v-on:click="transferMenu = !transferMenu"
-                      :class="{ subdrop: transferMenu }"
                       ><vue-feather type="shuffle"></vue-feather><span>Transfer</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -226,7 +260,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarsalesreturnlist"
                       v-on:click="returnMenu = !returnMenu"
-                      :class="{ subdrop: returnMenu }"
                       ><vue-feather type="corner-up-left"></vue-feather><span>Return</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -313,7 +346,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarExpense"
                       v-on:click="expenseMenu = !expenseMenu"
-                      :class="{ subdrop: expenseMenu }"
                       ><vue-feather type="file-text"></vue-feather><span>Expense</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -450,7 +482,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarUsers"
                       v-on:click="userMenu = !userMenu"
-                      :class="{ subdrop: userMenu }"
                       ><vue-feather type="users"></vue-feather><span>Manage Users</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -489,7 +520,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarAuthentication"
                       v-on:click="authenticationPageMenu = !authenticationPageMenu"
-                      :class="{ subdrop: authenticationPageMenu }"
                       ><vue-feather type="shield"></vue-feather><span>Authentication</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -513,7 +543,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarError"
                       v-on:click="errorpageMenu = !errorpageMenu"
-                      :class="{ subdrop: errorpageMenu }"
                       ><vue-feather type="file-minus"></vue-feather
                       ><span>Error Pages</span><span class="menu-arrow"></span
                     ></a>
@@ -543,7 +572,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarCountry"
                       v-on:click="placesMenu = !placesMenu"
-                      :class="{ subdrop: placesMenu }"
                       ><vue-feather type="map"></vue-feather><span>Places</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -592,7 +620,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarSweet"
                       v-on:click="elementMenu = !elementMenu"
-                      :class="{ subdrop: elementMenu }"
                       ><vue-feather type="layers"></vue-feather><span>Elements</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -734,7 +761,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarCharts"
                       v-on:click="chartMenu = !chartMenu"
-                      :class="{ subdrop: chartMenu }"
                       ><vue-feather type="bar-chart-2"></vue-feather><span>Charts</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -778,7 +804,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarIcons"
                       v-on:click="iconMenu = !iconMenu"
-                      :class="{ subdrop: iconMenu }"
                       ><vue-feather type="database"></vue-feather><span>Icons</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -868,7 +893,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarForms"
                       v-on:click="formMenu = !formMenu"
-                      :class="{ subdrop: formMenu }"
                       ><vue-feather type="edit"></vue-feather><span>Forms</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -951,7 +975,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarTable"
                       v-on:click="tableMenu = !tableMenu"
-                      :class="{ subdrop: tableMenu }"
                       ><vue-feather type="columns"></vue-feather><span>Tables</span
                       ><span class="menu-arrow"></span
                     ></a>
@@ -986,7 +1009,6 @@
                       aria-expanded="false"
                       aria-controls="sidebarSettings"
                       v-on:click="settingMenu = !settingMenu"
-                      :class="{ subdrop: settingMenu }"
                       ><vue-feather type="settings"></vue-feather><span>Settings</span
                       ><span class="menu-arrow"></span
                     ></a>

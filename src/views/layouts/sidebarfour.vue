@@ -100,6 +100,23 @@
               </li>
               <li class="submenu">
                 <a
+                  href="#sidebarTransfer"
+                  data-bs-toggle="collapse"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="sidebarTransfer"
+                  v-on:click="Transfer = !Transfer"
+                  :class="{ subdrop: Transfer }"
+                  ><span> Transfer</span> <span class="menu-arrow"></span
+                ></a>
+                <ul class="collapse menu-dropdown" id="sidebarTransfer">
+                  <li><a href="transferlist">Transfer List</a></li>
+                  <li><a href="addtransfer">Add Transfer </a></li>
+                  <li><a href="importtransfer">Import Transfer </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a
                   href="#sidebarProduct"
                   data-bs-toggle="collapse"
                   role="button"
@@ -120,75 +137,6 @@
                   <li><a href="addbrand">Add Brand</a></li>
                   <li><a href="importproduct">Import Products</a></li>
                   <li><a href="barcode">Print Barcode</a></li>
-                </ul>
-              </li>
-              <li class="submenu">
-                <a
-                  href="#sidebarSales"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarSales"
-                  v-on:click="Sales = !Sales"
-                  :class="{ subdrop: Sales }"
-                  ><span> Sales</span> <span class="menu-arrow"></span
-                ></a>
-                <ul class="collapse menu-dropdown" id="sidebarSales">
-                  <li><a href="saleslist">Sales List</a></li>
-                  <li><a href="pos">POS</a></li>
-                  <li><a href="pos">New Sales</a></li>
-                  <li><a href="salesreturnlists">Sales Return List</a></li>
-                  <li><a href="createsalesreturns">New Sales Return</a></li>
-                </ul>
-              </li>
-              <li class="submenu">
-                <a
-                  href="#sidebarPurchase"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarPurchase"
-                  v-on:click="Purchase = !Purchase"
-                  :class="{ subdrop: Purchase }"
-                  ><span> Purchase</span> <span class="menu-arrow"></span
-                ></a>
-                <ul class="collapse menu-dropdown" id="sidebarPurchase">
-                  <li><a href="purchaselist">Purchase List</a></li>
-                  <li><a href="addpurchase">Add Purchase</a></li>
-                  <li><a href="importpurchase">Import Purchase</a></li>
-                </ul>
-              </li>
-              <li class="submenu">
-                <a
-                  href="#sidebarExpense"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarExpense"
-                  v-on:click="Expense = !Expense"
-                  :class="{ subdrop: Expense }"
-                  ><span> Expense</span> <span class="menu-arrow"></span
-                ></a>
-                <ul class="collapse menu-dropdown" id="sidebarExpense">
-                  <li><a href="expenselist">Expense List</a></li>
-                  <li><a href="createexpense">Add Expense</a></li>
-                  <li><a href="expensecategory">Expense Category</a></li>
-                </ul>
-              </li>
-              <li class="submenu">
-                <a
-                  href="#sidebarQuotation"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="sidebarQuotation"
-                  v-on:click="Quotation = !Quotation"
-                  :class="{ subdrop: Quotation }"
-                  ><span> Quotation</span> <span class="menu-arrow"></span
-                ></a>
-                <ul class="collapse menu-dropdown" id="sidebarQuotation">
-                  <li><a href="">Quotation List</a></li>
-                  <li><a href="addquotation">Add Quotation</a></li>
                 </ul>
               </li>
               <li class="submenu">

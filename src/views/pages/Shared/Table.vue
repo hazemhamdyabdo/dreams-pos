@@ -53,8 +53,8 @@ letter-spacing: normal;">
           :per-page="perPage"
           filter-debounce="700"
           :current-page="currentPage"
-          :sort-by.sync="sortBy"
-          :sort-desc.sync="isSortDirDesc"
+          :sort-by="sortBy"
+          :sort-desc="isSortDirDesc"
           :sort-direction="sortDirection"
           :filter="searchQuery"
           :filter-included-fields="filterOn"
@@ -87,7 +87,7 @@ letter-spacing: normal;">
             </span> -->
             <span
               v-else
-              :key="field.key"
+              :key="field.key1"
               v-html="value"
             >
             </span>
