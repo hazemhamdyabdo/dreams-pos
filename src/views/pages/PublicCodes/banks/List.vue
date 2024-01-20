@@ -6,17 +6,17 @@
         <!-- /add -->
         <div class="card">
           <div class="card-body">
-            <HaTable
+            <!-- <HaTable
               :columns="tableColumns"
               :sortable-fields="sortOptions"
               :data="dummyData"
               :entries="10"
               :actions="true"
-            />
+            /> -->
+            <SecTable :columns="tableColumns" :data="dummyData" />
           </div>
         </div>
       </div>
-      -->
     </div>
   </div>
 </template>
@@ -25,13 +25,14 @@
 import GTable from "../../Shared/Table.vue";
 import HaTable from "@/views/pages/Shared/table/HaTable.vue";
 import FormItem from "@/components/form/inputs/field.vue";
-// import gfield from "";
+import SecTable from "../../Shared/table/SecTable.vue";
 
 export default {
   components: {
     FormItem,
     GTable,
     HaTable,
+    SecTable,
   },
   data() {
     return {
@@ -61,19 +62,7 @@ export default {
   },
   computed: {
     tableColumns() {
-      return [
-        { field: "code", label: this.$t("Code") },
-        { field: "arabicName", label: this.$t("bankName") },
-        {
-          field: "accountNumber",
-          label: this.$t("AccountNumber"),
-        },
-        {
-          field: "iban",
-          label: this.$t("Iban"),
-        },
-        { field: "notes", label: this.$t("notes") },
-      ];
+      return ["id", "accountNumber", "iban", "notes", "arabicName"];
     },
     sortOptions() {
       return ["code", "accountNumber", "iban", "notes", "arabicName"];
