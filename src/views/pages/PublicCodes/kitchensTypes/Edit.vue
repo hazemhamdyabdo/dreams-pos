@@ -9,58 +9,69 @@
             <b-form class="was-validated" @submit="save()">
               <b-row>
                 <b-col md="4">
-                  <gfield
-                    label-text="Code"
-                    ref="code"
-                    name="code"
-                    id="code"
+                  <!-- <gfield
+                      label-text="Code"
+                      ref="code"
+                      name="code"
+                      id="code"
+                      v-model="selectedItem.code"
+                    /> -->
+                  <label>{{ $t("code") }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
                     v-model="selectedItem.code"
-                    rules="required"
                   />
                 </b-col>
                 <b-col md="4">
-                  <gfield
-                    :label-text="$t('arabicName')"
-                    ref="code"
-                    name="code"
-                    id="code"
+                  <!-- arabicName  -->
+                  <!-- <gfield
+                      id="arabicName"
+                      rules="required"
+                      v-model="selectedItem.arabicName"
+                      label-text="arabicName"
+                    /> -->
+                  <label>{{ $t("arabicName") }}</label>
+                  <input
+                    type="text"
                     class="form-control"
                     v-model="selectedItem.arabicName"
-                    rules="required"
+                    required
                   />
-
                   <div class="invalid-feedback">
                     {{ $t("NameIsRequired") }}
                   </div>
                 </b-col>
                 <b-col md="4">
-                  <gfield
-                    id="englishName"
-                    ref="englishName"
+                  <!-- <gfield
+                      id="englishName"
+                      ref="englishName"
+                      v-model="selectedItem.englishName"
+                      name="englishName"
+                      label-text="englishName"
+                    /> -->
+                  <label>{{ $t("englishName") }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
                     v-model="selectedItem.englishName"
-                    name="englishName"
-                    label-text="englishName"
                   />
                 </b-col>
               </b-row>
               <b-row>
                 <!-- accountNumber -->
                 <b-col md="4">
-                  <gfield
-                    id="accountNumber"
-                    v-model="selectedItem.accountNumber"
-                    name="accountNumber"
-                    label-text="accountNumber"
-                  />
-                </b-col>
-                <!-- iban  -->
-                <b-col md="4">
-                  <gfield
-                    id="iban"
-                    v-model="selectedItem.iban"
-                    label-text="iban"
-                    name="iban"
-                    rules="required"
+                  <!-- <gfield
+                      id="accountNumber"
+                      v-model="selectedItem.accountNumber"
+                      name="accountNumber"
+                      label-text="accountNumber"
+                    /> -->
+                  <label>{{ $t("space") }}</label>
+                  <input
+                    type="decimal"
+                    class="form-control"
+                    v-model="selectedItem.space"
                   />
                 </b-col>
                 <b-col md="2">
@@ -157,7 +168,7 @@ export default {
   mounted() {
     this.id = this.$route.params.id;
     if (this.id > 0) {
-      this.getSelectedBank();
+      this.getSelected();
     }
   },
   methods: {
@@ -168,25 +179,25 @@ export default {
       }
       if (this.selectedItem.id > 0) {
         this.update({
-          url: "Banks",
+          url: "KitchensTypes",
           data: this.selectedItem,
           id: this.selectedItem.id,
         }).then(() => {
           this.doneAlert({ text: this.$t("updatedSuccessfully") });
-          this.$router.push({ name: "banks" });
+          this.$router.push({ name: "kitchenType" });
         });
       } else {
         this.create({
-          url: "Banks",
+          url: "KitchensTypes",
           data: this.selectedItem,
         }).then(() => {
           this.doneAlert({ text: this.$t("savedSuccessfully") });
-          this.$router.push({ name: "banks" });
+          this.$router.push({ name: "kitchenType" });
         });
       }
     },
-    getSelectedBank() {
-      this.get({ url: "Banks", id: this.id }).then((data) => {
+    getSelected() {
+      this.get({ url: "KitchensTypes", id: this.id }).then((data) => {
         this.selectedItem = data;
       });
     },

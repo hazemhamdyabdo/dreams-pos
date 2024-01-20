@@ -1,59 +1,25 @@
 <template>
   <div class="main-wrapper">
-    <layouts></layouts>
-    <sidebar></sidebar>
     <div class="page-wrapper">
       <div class="content">
         <pageheader :title="title" :title1="title1" />
         <!-- /add -->
         <div class="card">
           <div class="card-body">
-            <gform @submit="save">
-              <b-row>
-                <b-col md="4">
-                  <gfield
-                    label-text="Code"
-                    name="code"
-                    id="code"
-                    v-model="selectedItem.Code"
-                    rules="required"
-                  />
-                </b-col>
-                <b-col md="4">
-                  <gfield
-                    label-text="Name"
-                    name="name"
-                    type="number"
-                    id="name"
-                    v-model="selectedItem.Name"
-                  />
-                  <b-row>
-                    <b-col cols="12">
-                      <hr />
-                    </b-col>
-                    <b-col cols="12" class="d-flex justify-content-end">
-                      <b-button class="mx-1" variant="primary" type="submit">
-                        {{ $t("save") }}
-                      </b-button>
-                    </b-col>
-                  </b-row>
-                </b-col>
-              </b-row>
-            </gform>
             <g-table
-              ref="area-table"
+              ref="guardians-table"
               :items="items"
               :columns="tableColumns"
+              :is-busy="isTableBusy"
               :noAction="true"
               perPage="25"
               :totalRows="totalRows"
+              @filtered="onFiltered"
               :createButton="{ visiable: true }"
               :searchInput="{ visiable: true }"
               @on-create="
                 (v) => {
-                  openModal({
-                    englishName: '',
-                  });
+                  $router.push({ name: 'addkitchenType' });
                 }
               "
             >
@@ -65,8 +31,7 @@
                     variant="custom"
                     class="btn-icon"
                     size="sm"
-                    v-permission="'editAreas'"
-                    @click="openModal(item)"
+                    @click="edit(item)"
                   >
                     <feather-icon
                       icon="EyeIcon"
@@ -81,8 +46,7 @@
                     variant="custom"
                     class="btn-icon"
                     size="sm"
-                    v-permission="'editAreas'"
-                    @click="openModal(item)"
+                    @click="edit(item)"
                   >
                     <vue-feather
                       type="edit"
@@ -96,7 +60,6 @@
                     variant="flat-danger"
                     class="btn-icon"
                     size="sm"
-                    v-permission="'deleteAreas'"
                     @click="remove(item)"
                   >
                     <vue-feather
@@ -117,7 +80,7 @@
 </template>
 
 <script>
-import GTable from "../Shared/Table.vue";
+import GTable from "../../Shared/Table.vue";
 
 export default {
   components: {
@@ -125,9 +88,8 @@ export default {
   },
   data() {
     return {
-      selectedItem: {
-        Code: "",
-      },
+      selectedItem: {},
+      paymentMethods: [],
       totalRows: 0,
       currentPage: 1,
       perPage: 25,
@@ -150,51 +112,48 @@ export default {
   computed: {
     tableColumns() {
       return [
-        { key: "code", label: this.$t("Code"), sortable: true },
-        { key: "name", label: this.$t("bankName"), sortable: true },
+        { key: "code", label: this.$t("code"), sortable: true },
+        { key: "arabicName", label: this.$t("kitchenType"), sortable: true },
+        { key: "space", label: this.$t("space"), sortable: true },
+        { key: "notes", label: this.$t("notes"), sortable: true },
         { key: "actions" },
       ];
     },
   },
   mounted() {
-    this.items = [
-      {
-        code: 1,
-        name: "prod1",
-      },
-      {
-        code: 2,
-        name: "prod2",
-      },
-      {
-        code: 3,
-        name: "prod3",
-      },
-      {
-        code: 4,
-        name: "prod4",
-      },
-    ];
-    this.totalRows = this.items.length;
+    this.getItems();
   },
   methods: {
+    getItems() {
+      this.get({ url: "kitchensTypes" }).then((data) => {
+        this.items = data;
+      });
+    },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    save() {
-      /*
-      this.create({
-        url: 'Banks',
-        data: this.selectedItem,
-      }).then((data) => {
-        console.log(data);
-      }).catch(error => {
-        console.error('Axios error:', error);
+    edit(item) {
+      this.$router.push({
+        name: "editkitchenType",
+        params: { id: item.id },
       });
-      */
+    },
+    remove(item) {
+      this.confirmAction(
+        {
+          text: this.$t("areYouSureYouWantToDelete"),
+        },
+        () => {
+          // then delete
+          this.delete({ url: "kitchensTypes", id: item.id }).then(() => {
+            this.doneAlert({ text: this.$t("deletedSuccessfully") });
+            this.getItems();
+          });
+        }
+      );
     },
   },
-  name: "addproduct",
+  name: "Nationalities",
 };
 </script>

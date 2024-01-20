@@ -8,168 +8,7 @@
           :settings="settings"
           @ps-scroll-y="scrollHanle"
         >
-          <div id="sidebar-menu" class="sidebar-menu">
-            <ul>
-              <li class="submenu-open">
-                <h6 class="submenu-hdr">Main</h6>
-                <ul>
-                  <li
-                    v-bind:class="{
-                      active: currentPath == 'index' || currentPath == 'index',
-                    }"
-                  >
-                    <router-link to="index"
-                      ><vue-feather type="grid"></vue-feather><span> Dashboard</span>
-                    </router-link>
-                  </li>
-                  <li class="submenu">
-                    <a
-                      href="#sidebarApplication"
-                      data-bs-toggle="collapse"
-                      role="button"
-                      aria-expanded="false"
-                      aria-controls="sidebarApplication"
-                      v-bind:class="chatMenu ? 'active' : 'notactive'"
-                      v-on:click="chatMenu = !chatMenu"
-                      ><vue-feather type="smartphone"></vue-feather
-                      ><span>Application</span><span class="menu-arrow"></span
-                    ></a>
-                    <ul class="collapse menu-dropdown" id="sidebarApplication">
-                      <li>
-                        <router-link
-                          :class="currentPath == 'chat' ? 'active' : 'notactive'"
-                          to="chat"
-                          >Chat</router-link
-                        >
-                      </li>
-                      <li>
-                        <router-link
-                          :class="currentPath == 'calendar' ? 'active' : 'notactive'"
-                          to="calendar"
-                          >Calendar</router-link
-                        >
-                      </li>
-                      <li>
-                        <router-link
-                          :class="currentPath == 'email' ? 'active' : 'notactive'"
-                          to="email"
-                          >Email</router-link
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="submenu">
-                    <a
-                      v-bind:class="transferMenu ? 'active' : 'notactive'"
-                      href="#sidebarTransfer"
-                      data-bs-toggle="collapse"
-                      role="button"
-                      aria-expanded="false"
-                      aria-controls="sidebarTransfer"
-                      v-on:click="transferMenu = !transferMenu"
-                      ><vue-feather type="shuffle"></vue-feather><span>{{$t("publicCodes")}}</span
-                      ><span class="menu-arrow"></span 
-                    ></a>
-                    <ul class="collapse menu-dropdown" id="sidebarTransfer">
-                      <li>
-                        <router-link
-                          :class="
-                            currentPath == 'banks' || currentPath == 'banks'
-                              ? 'active'
-                              : 'notactive'
-                          "
-                          to="banks"
-                          >{{ $t("Banks") }}</router-link
-                        >
-                      </li>
-                      <li>
-                    <router-link
-                      :class="
-                        currentPath == 'paymentMehtod' || currentPath == 'paymentMehtod'
-                          ? 'active'
-                          : 'notactive'
-                      "
-                      to="paymentMehtod"
-                      ><vue-feather type="plus-square"></vue-feather
-                      ><span>{{$t("paymentMehtod")}}</span></router-link
-                    >
-                  </li>
-                    </ul>
-                  </li>
-                  
-              <li class="submenu">
-                <h6 class="submenu-hdr">Products</h6>
-                <ul>
-                  <li>
-                    <router-link
-                      :class="
-                        currentPath == 'productlist' || currentPath == 'editproduct'
-                          ? 'active'
-                          : 'notactive'
-                      "
-                      to="productlist"
-                      ><vue-feather type="box"></vue-feather
-                      ><span>Products</span></router-link
-                    >
-                  </li>
-                  <li>
-                    <router-link
-                      :class="
-                        currentPath == 'addproduct' || currentPath == 'product-details'
-                          ? 'active'
-                          : 'notactive'
-                      "
-                      to="addproduct"
-                      ><vue-feather type="plus-square"></vue-feather
-                      ><span>Create Product</span></router-link
-                    >
-                  </li>
-                  <li>
-                    <router-link
-                      :class="currentPath == 'categorylist' ? 'active' : 'notactive'"
-                      to="categorylist"
-                      ><vue-feather type="codepen"></vue-feather
-                      ><span>Category</span></router-link
-                    >
-                  </li>
-                  <li>
-                    <router-link
-                      :class="currentPath == 'brandlist' ? 'active' : 'notactive'"
-                      to="brandlist"
-                      ><vue-feather type="tag"></vue-feather
-                      ><span>Brands</span></router-link
-                    >
-                  </li>
-                  <li>
-                    <router-link
-                      :class="currentPath == 'subcategorylist' ? 'active' : 'notactive'"
-                      to="subcategorylist"
-                      ><vue-feather type="speaker"></vue-feather
-                      ><span>Sub Category</span></router-link
-                    >
-                  </li>
-                  <li>
-                    <router-link
-                      :class="currentPath == 'barcode' ? 'active' : 'notactive'"
-                      to="barcode"
-                      ><vue-feather type="align-justify"></vue-feather
-                      ><span>Print Barcode</span></router-link
-                    >
-                  </li>
-                  <li>
-                    <router-link
-                      :class="currentPath == 'importproduct' ? 'active' : 'notactive'"
-                      to="importproduct"
-                      ><vue-feather type="minimize-2"></vue-feather
-                      ><span>Import Products</span></router-link
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+          <TheSidebar />
         </perfect-scrollbar>
       </div>
     </div>
@@ -177,8 +16,10 @@
   <!-- /Sidebar -->
 </template>
 <script>
+import TheSidebar from "@/components/sidebar/TheSidebar.vue";
 import { PerfectScrollbar } from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
+
 export default {
   data() {
     return {
@@ -264,12 +105,18 @@ export default {
             let parentCollapseDiv = a.closest(".collapse.menu-dropdown");
             if (parentCollapseDiv) {
               parentCollapseDiv.classList.add("show");
-              parentCollapseDiv.parentElement.children[0].classList.add("active");
+              parentCollapseDiv.parentElement.children[0].classList.add(
+                "active"
+              );
               parentCollapseDiv.parentElement.children[0].setAttribute(
                 "aria-expanded",
                 "true"
               );
-              if (parentCollapseDiv.parentElement.closest(".collapse.menu-dropdown")) {
+              if (
+                parentCollapseDiv.parentElement.closest(
+                  ".collapse.menu-dropdown"
+                )
+              ) {
                 parentCollapseDiv.parentElement
                   .closest(".collapse")
                   .classList.add("show");
@@ -289,6 +136,7 @@ export default {
   },
   components: {
     PerfectScrollbar,
+    TheSidebar,
   },
 
   computed: {
@@ -351,10 +199,9 @@ export default {
     },
     transferMenu() {
       return (
-        this.$route.name == "transferlist" ||
-        this.$route.name == "addtransfer" ||
-        this.$route.name == "edittransfer" ||
-        this.$route.name == "importtransfer"
+        this.$route.name == "banks" ||
+        this.$route.name == "addBank" ||
+        this.$route.name == "editBank/:id"
       );
     },
     returnMenu() {
@@ -482,7 +329,9 @@ export default {
       );
     },
     tableMenu() {
-      return this.$route.name == "tables-basic" || this.$route.name == "data-tables";
+      return (
+        this.$route.name == "tables-basic" || this.$route.name == "data-tables"
+      );
     },
     chatMenu() {
       return (
