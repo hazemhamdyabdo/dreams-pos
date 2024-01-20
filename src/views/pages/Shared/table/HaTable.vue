@@ -294,7 +294,7 @@ tbody > tr:nth-child(odd) {
 
 .btn-searchset {
   position: absolute;
-  right: 35%;
+  right: 30%;
 }
 
 .icon {
