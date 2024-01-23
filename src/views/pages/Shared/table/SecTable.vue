@@ -9,23 +9,57 @@
         @input="updateSearch"
         placeholder="Search..."
       />
-      <select v-model="selectedSort" @change="updateSort">
-        <option value="">Sort by...</option>
-        <option v-for="column in columns" :key="column" :value="column">
-          {{ column }}
-        </option>
-      </select>
-      <select v-model="sortOrder" @change="updateSortOrder">
-        <option value="1">Ascending</option>
-        <option value="-1">Descending</option>
-      </select>
+    </div>
+    <div class="pagination-container">
+      <div class="entries">
+        <span>{{ $t("pages count") }}</span>
+        <select v-model="itemsPerPage" @change="changeItemsPerPage">
+          <option
+            v-for="option in perPageOptions"
+            :key="option"
+            :value="option"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <div class="pagination">
+        <button @click="prevPage" :disabled="currentPage === 1" class="prev">
+          &lt;
+        </button>
+        <template v-for="page in totalPages" :key="page">
+          <button
+            @click="goToPage(page)"
+            :class="{ active: page === currentPage }"
+            class="page"
+          >
+            {{ page }}
+          </button>
+        </template>
+        <button
+          @click="nextPage"
+          :disabled="currentPage === totalPages"
+          class="next"
+        >
+          &gt;
+        </button>
+      </div>
     </div>
 
     <table>
       <thead>
         <tr>
           <th v-for="(column, index) in columns" :key="index">
-            <span @click="sortData(column)">{{ column }}</span>
+            <div class="">
+              <span class="sort-icon">
+                <span @click="sortData(column)">
+                  {{ column }}
+                  <span style="font-size: 0.6rem">▲</span>
+                  <span style="font-size: 0.6rem">▼</span>
+                </span>
+              </span>
+            </div>
           </th>
           <th>action</th>
         </tr>
@@ -59,29 +93,6 @@
         </tr>
       </tbody>
     </table>
-
-    <div class="pagination">
-      <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
-      <template v-for="page in totalPages" :key="page">
-        <button
-          @click="goToPage(page)"
-          :class="{ active: page === currentPage }"
-        >
-          {{ page }}
-        </button>
-      </template>
-      <button @click="nextPage" :disabled="currentPage === totalPages">
-        Next
-      </button>
-    </div>
-
-    <div class="entries">
-      <select v-model="itemsPerPage" @change="changeItemsPerPage">
-        <option v-for="option in perPageOptions" :key="option" :value="option">
-          {{ option }}
-        </option>
-      </select>
-    </div>
   </div>
 </template>
 
@@ -102,7 +113,7 @@ export default {
     },
     perPageOptions: {
       type: Array,
-      default: () => [5, 10, 25, 50],
+      default: () => [3, 5, 10, 25, 50],
     },
   },
   data() {
@@ -237,6 +248,9 @@ td {
   padding: 8px;
   text-align: left;
 }
+th {
+  font-weight: 700;
+}
 
 tbody > tr:nth-child(odd) {
   background-color: #f2f2f2;
@@ -248,11 +262,14 @@ th span {
 
 .search-sort {
   margin-bottom: 10px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .search-sort input,
 .search-sort select {
   margin-right: 10px;
+  border: 1px solid gainsboro;
 }
 
 .pagination {
@@ -263,12 +280,57 @@ th span {
   margin: 0 5px;
 }
 
+.sort-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 1rem;
+}
 .entries {
   margin-top: 10px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.entries select {
+  width: 5rem;
+  text-align: center;
+  border: 1px solid gainsboro;
 }
 .btn-searchset {
   position: absolute;
-  right: 15%;
-  top: 16px;
+  right: 10.5%;
+  top: -3px;
+}
+
+.prev,
+.next,
+.page {
+  padding: 0.3rem 0.7rem;
+  border-radius: 50%;
+  font-weight: 700;
+  border: 1px solid gainsboro;
+}
+
+.next:hover,
+.prev:hover,
+.page:hover {
+  background-color: orange;
+  cursor: pointer;
+  color: white;
+}
+
+.active {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

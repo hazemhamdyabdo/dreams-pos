@@ -1,120 +1,55 @@
 <template>
   <b-form-group :label="hideLable ? '' : $t($attrs['label-text'])">
-    <Field
-      ref="fieldValidator"
-      v-slot="{ errors }"
-      :name="$t($attrs['label-text']) || $t($attrs['name'])"
-      :id="$t($attrs['label-text']) || $t($attrs['name'])"
-      :rules="rules || ''"
-      v-model="itemValue"
-      @input="
-        (v) => {
-          handelInput(v);
-        }
-      "
-      @change="onChange"
-      @focus="onFocus"
-      @blur="onBlur"
-      :vid="name || $attrs['label-text'] || $attrs['name'] || ''"
-      mode="eager"
-    >
+    <Field ref="fieldValidator" v-slot="{ errors }" :name="$t($attrs['label-text']) || $t($attrs['name'])"
+      :id="$t($attrs['label-text']) || $t($attrs['name'])" :rules="rules || ''" v-model="itemValue" @input="(v) => {
+        handelInput(v);
+      }
+        " @change="onChange" @focus="onFocus" @blur="onBlur"
+      :vid="name || $attrs['label-text'] || $attrs['name'] || ''" mode="eager">
       <div class="q-mb-md">
-        <b-input-group
-          :size="attrs.size"
-          class="mb-0"
-          v-if="Object.keys($slots).length"
-        >
+        <b-input-group :size="attrs.size" class="mb-0" v-if="Object.keys($slots).length">
           <template v-if="$slots.prepend" #prepend>
             <slot name="prepend" />
           </template>
           <template v-if="$slots.append" #append>
             <slot name="append" />
           </template>
-          <component
-            ref="input1"
-            :is="field"
-            :type="type"
-            :placeholder="placeholder || ''"
-            :options="selectData"
-            v-model="itemValue"
-            v-bind="attrs"
-            v-on="listeners"
-            :id="$t($attrs['label-text']) || $t($attrs['name'])"
-            :dir="dir"
-            :disabled="disabled"
-            :readonly="readonly"
-            :multiple="multiple"
-            @input="
-              (v) => {
-                handelInput(v);
-              }
-            "
-            @change="onChange"
-            @focus="onFocus"
-            @blur="onBlur"
-            @option:selected="
-              (v) => {
-                $emit('change', v);
-              }
-            "
-            @keyup.enter.prevent=""
-            :state="errors && errors.length > 0 ? false : null"
-            v-b-tooltip.hover.v-danger
-            :title="toolTipError && errors ? errors[0] || '' : ''"
-          >
+          <component ref="input1" :is="field" :type="type" :placeholder="placeholder || ''" :options="selectData"
+            v-model="itemValue" v-bind="attrs" v-on="listeners" :id="$t($attrs['label-text']) || $t($attrs['name'])"
+            :dir="dir" :disabled="disabled" :readonly="readonly" :multiple="multiple" @input="(v) => {
+              handelInput(v);
+            }
+              " @change="onChange" @focus="onFocus" @blur="onBlur" @option:selected="(v) => {
+    $emit('change', v);
+  }
+    " @keyup.enter.prevent="" :state="errors && errors.length > 0 ? false : null" v-b-tooltip.hover.v-danger
+            :title="toolTipError && errors ? errors[0] || '' : ''">
             <template v-if="$attrs.field === 'select'" #no-options>
               {{ $t("Sorry, no matching options") }}
             </template>
           </component>
         </b-input-group>
-        <component
-          v-else
-          ref="input2"
-          :is="field"
-          :id="$t($attrs['label-text']) || $t($attrs['name'])"
-          :type="type"
-          :placeholder="placeholder || ''"
-          :options="selectData"
-          v-model="itemValue"
-          :name="$attrs['name'] || $attrs['label-text'] || ''"
-          :multiple="multiple"
-          v-bind="attrs"
-          v-on="listeners"
-          :dir="dir"
-          :disabled="
-            disabled || ($attrs.name === 'code' && $route.params.id > 0)
-          "
-          :readonly="readonly"
-          @change="onChange"
-          @input="
-            (v) => {
-              handelInput(v);
-            }
-          "
-          @focus="onFocus"
-          @blur="onBlur"
-          @wheel="$event.target.blur()"
-          @option:selected="
-            (v) => {
-              $emit('change', v);
-            }
-          "
-          :state="errors && errors.length > 0 ? false : null"
-          v-b-tooltip.hover.v-danger
-          :title="toolTipError && errors ? errors[0] || '' : ''"
-        >
+        <component v-else ref="input2" :is="field" :id="$t($attrs['label-text']) || $t($attrs['name'])" :type="type"
+          :placeholder="placeholder || ''" :options="selectData" v-model="itemValue"
+          :name="$attrs['name'] || $attrs['label-text'] || ''" :multiple="multiple" v-bind="attrs" v-on="listeners"
+          :dir="dir" :disabled="disabled || ($attrs.name === 'code' && $route.params.id > 0)
+            " :readonly="readonly" @change="onChange" @input="(v) => {
+    handelInput(v);
+  }
+    " @focus="onFocus" @blur="onBlur" @wheel="$event.target.blur()" @option:selected="(v) => {
+    $emit('change', v);
+  }
+    " :state="errors && errors.length > 0 ? false : null" v-b-tooltip.hover.v-danger
+          :title="toolTipError && errors ? errors[0] || '' : ''">
           <template v-if="$attrs.field === 'select'" #no-options>
             {{ $t("Sorry, no matching options") }}
           </template>
         </component>
-        <small
-          :class="{
-            'd-none':
-              (!$attrs['name'] && !$attrs['label-text']) || toolTipError,
-          }"
-          class="text-danger"
-          >{{ errors[0] }}</small
-        >
+        {{ errors }}
+        <small :class="{
+          'd-none':
+            (!$attrs['name'] && !$attrs['label-text']) || toolTipError,
+        }" class="text-danger">{{ errors[0] }}</small>
       </div>
     </Field>
   </b-form-group>
@@ -202,6 +137,7 @@ export default {
 
     const updateAndValidate = () => {
       value.value = modelValue; // Update the value to trigger reactivity
+      console.log("hello 2", modelValue);
       validate(); // Trigger revalidation
     };
 
@@ -273,6 +209,7 @@ export default {
           "update:modelValue",
           this.type === "number" ? parseFloat(newVal) || 0 : newVal
         );
+        console.log("hello 1")
         this.updateAndValidate();
       }
     },

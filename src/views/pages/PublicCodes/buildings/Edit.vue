@@ -9,19 +9,11 @@
             <b-form class="was-validated" @submit="save()">
               <b-row>
                 <b-col md="4">
-                  <!-- <gfield
-                      label-text="Code"
-                      ref="code"
-                      name="code"
-                      id="code"
-                      v-model="selectedItem.code"
-                    /> -->
-                  <label>{{ $t("code") }}</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="selectedItem.code"
-                  />
+                  <h1>asd</h1>
+                  <gfield label-text="Code" ref="code" name="code" id="code" v-model="selectedItem.code" />
+
+                  <label>{{ $t("code") }}/daff</label>
+                  <input type="text" class="form-control" v-model="selectedItem.code" />
                 </b-col>
                 <b-col md="4">
                   <!-- arabicName  -->
@@ -32,12 +24,7 @@
                       label-text="arabicName"
                     /> -->
                   <label>{{ $t("arabicName") }}</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="selectedItem.arabicName"
-                    required
-                  />
+                  <input type="text" class="form-control" v-model="selectedItem.arabicName" required />
                   <div class="invalid-feedback">
                     {{ $t("NameIsRequired") }}
                   </div>
@@ -51,76 +38,42 @@
                       label-text="englishName"
                     /> -->
                   <label>{{ $t("englishName") }}</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="selectedItem.englishName"
-                  />
+                  <input type="text" class="form-control" v-model="selectedItem.englishName" />
                 </b-col>
               </b-row>
               <b-row>
                 <b-col md="2">
-                  <label
-                    style="font-size: 14px; margin-bottom: 7px"
-                    for="buidingInService"
-                  >
+                  <label style="font-size: 14px; margin-bottom: 7px" for="buidingInService">
                     {{ $t("buidingInService") }}
                   </label>
                   <b-form-group>
-                    <b-form-checkbox
-                      v-model="selectedItem.status"
-                      class="mr-0 mt-50"
-                      name="is-rtl"
-                      inline
-                    />
+                    <b-form-checkbox v-model="selectedItem.status" class="mr-0 mt-50" name="is-rtl" inline />
                   </b-form-group>
                 </b-col>
 
                 <b-col md="2">
-                  <label
-                    style="font-size: 14px; margin-bottom: 7px"
-                    for="general"
-                  >
+                  <label style="font-size: 14px; margin-bottom: 7px" for="general">
                     {{ $t("general") }}
                   </label>
                   <b-form-group>
-                    <b-form-checkbox
-                      v-model="selectedItem.isShared"
-                      class="mr-0 mt-50"
-                      name="is-rtl"
-                      inline
-                    />
+                    <b-form-checkbox v-model="selectedItem.isShared" class="mr-0 mt-50" name="is-rtl" inline />
                   </b-form-group>
                 </b-col>
               </b-row>
               <b-row>
                 <b-col md="12">
                   <b-form-group>
-                    <label
-                      style="font-size: 14px; margin-bottom: 7px"
-                      for="customer"
-                    >
+                    <label style="font-size: 14px; margin-bottom: 7px" for="customer">
                       {{ $t("notes") }}
                     </label>
-                    <b-form-textarea
-                      id="textarea"
-                      v-model="selectedItem.notes"
-                      label="Notes"
-                      rows="3"
-                      max-rows="6"
-                    />
+                    <b-form-textarea id="textarea" v-model="selectedItem.notes" label="Notes" rows="3" max-rows="6" />
                   </b-form-group>
                 </b-col>
               </b-row>
               <b-row>
                 <b-col cols="12" class="d-flex justify-content-end">
-                  <b-button
-                    v-permission="$route.meta.permission"
-                    class="mx-2"
-                    type="submit"
-                    variant="primary"
-                    data-action-type="save"
-                  >
+                  <b-button v-permission="$route.meta.permission" class="mx-2" type="submit" variant="primary"
+                    data-action-type="save">
                     {{ $t("save") }}
                   </b-button>
                 </b-col>

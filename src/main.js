@@ -4,6 +4,8 @@ import store from "./store/app";
 import { router } from "./router";
 import App from "./App.vue";
 // mixin
+// import TableTwo from "@/views/pages/tables/table-two.vue";
+
 import SomeMixin from "./mixin/global";
 import { BootstrapVue3, BToastPlugin } from "bootstrap-vue-3";
 import Antd from "ant-design-vue";
@@ -128,6 +130,7 @@ app.use(store);
 
 // Output whether Vuex is installed or not
 // console.log('Is Vuex installed?', isVuexInstalled);
+// app.use(TableTwo);
 app.use(CoolLightBox);
 app.use(VueSweetalert2);
 app.use(VueEasyLightbox);
