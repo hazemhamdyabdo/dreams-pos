@@ -1,0 +1,1928 @@
+{
+  "info": {
+    "_postman_id": "c3fc0c8d-29d0-42e5-bd9a-af412eaec06a",
+    "name": "Discounts feature",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32424337",
+    "_collection_link": "https://softigital.postman.co/workspace/My-Workspace~2ff6e50e-4222-499c-8299-a03fcd54c3c9/collection/32424337-c3fc0c8d-29d0-42e5-bd9a-af412eaec06a?action=share&source=collection_link&creator=32424337"
+  },
+  "item": [
+    {
+      "name": "Discounts",
+      "item": [
+        {
+          "name": "Get all discounts",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "10258|jXAS1NUctiKOlFI1fejDDWAIIQY69aGQjRfOgA3Ceeacf126",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{local}}/api/discounts?limit=5",
+              "host": ["{{local}}"],
+              "path": ["api", "discounts"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show discount",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "10258|jXAS1NUctiKOlFI1fejDDWAIIQY69aGQjRfOgA3Ceeacf126",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{local}}/api/discounts/3",
+              "host": ["{{local}}"],
+              "path": ["api", "discounts", "3"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create discount",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "10258|jXAS1NUctiKOlFI1fejDDWAIIQY69aGQjRfOgA3Ceeacf126",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "test name",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "test description",
+                  "type": "text"
+                },
+                {
+                  "key": "value_type",
+                  "value": "fixed",
+                  "type": "text"
+                },
+                {
+                  "key": "type",
+                  "value": "date_time",
+                  "type": "text"
+                },
+                {
+                  "key": "min_total",
+                  "value": "20",
+                  "type": "text"
+                },
+                {
+                  "key": "amount",
+                  "value": "30",
+                  "type": "text"
+                },
+                {
+                  "key": "is_active",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "is_for_mobile",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "start_at",
+                  "value": "2024-01-27 01:15:00",
+                  "type": "text"
+                },
+                {
+                  "key": "end_at",
+                  "value": "2024-02-01 13:10:00",
+                  "type": "text"
+                },
+                {
+                  "key": "products[0][id]",
+                  "value": "98895975-672a-4544-bd20-da88aede2159",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "products[1][id]",
+                  "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "products[2][id]",
+                  "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "categories_ids[]",
+                  "value": "4",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "categories_ids[]",
+                  "value": "9",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "categories_ids[]",
+                  "value": "3",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "areas_ids[]",
+                  "value": "4",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "areas_ids[]",
+                  "value": "2",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "areas_ids[]",
+                  "value": "12",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "products[0][min_item_quantity]",
+                  "value": "2",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "products[1][min_item_quantity]",
+                  "value": "4",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "products[2][min_item_quantity]",
+                  "value": "1",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "min_order_items",
+                  "value": "3",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{local}}/api/discounts",
+              "host": ["{{local}}"],
+              "path": ["api", "discounts"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create product_category discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "test name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "test description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "value_type",
+                      "value": "fixed",
+                      "type": "text"
+                    },
+                    {
+                      "key": "type",
+                      "value": "product_category",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_total",
+                      "value": "20",
+                      "type": "text"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "30",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_for_mobile",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "2024-01-27 01:15:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "2024-02-01 13:10:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][id]",
+                      "value": "98895975-672a-4544-bd20-da88aede2159",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[1][id]",
+                      "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[2][id]",
+                      "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                      "type": "text"
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "4",
+                      "type": "text"
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "9",
+                      "type": "text"
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "3",
+                      "type": "text"
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "12",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[0][min_item_quantity]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][min_item_quantity]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][min_item_quantity]",
+                      "value": "1",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "min_order_items",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:49:35 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:49:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 09:49:35 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Discount created successfully.\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"test name\",\n        \"description\": \"test description\",\n        \"type\": \"product_category\",\n        \"value_type\": \"fixed\",\n        \"start_at\": \"2024-01-27 01:15:00\",\n        \"end_at\": \"2024-02-01 13:10:00\",\n        \"amount\": \"30\",\n        \"min_total\": \"20\",\n        \"min_order_items\": null,\n        \"is_for_mobile\": null,\n        \"status\": \"Active\",\n        \"created_at\": \"2024-01-24T09:49:35.000000Z\",\n        \"orders\": []\n    }\n}"
+            },
+            {
+              "name": "Create area discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "test name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "test description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "value_type",
+                      "value": "fixed",
+                      "type": "text"
+                    },
+                    {
+                      "key": "type",
+                      "value": "area",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_total",
+                      "value": "20",
+                      "type": "text"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "30",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_for_mobile",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "2024-01-27 01:15:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "2024-02-01 13:10:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][id]",
+                      "value": "98895975-672a-4544-bd20-da88aede2159",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][id]",
+                      "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][id]",
+                      "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "9",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "4",
+                      "type": "text"
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "2",
+                      "type": "text"
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "12",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][min_item_quantity]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][min_item_quantity]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][min_item_quantity]",
+                      "value": "1",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "min_order_items",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:51:09 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:51:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 09:51:09 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Discount created successfully.\",\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"test name\",\n        \"description\": \"test description\",\n        \"type\": \"area\",\n        \"value_type\": \"fixed\",\n        \"start_at\": \"2024-01-27 01:15:00\",\n        \"end_at\": \"2024-02-01 13:10:00\",\n        \"amount\": \"30\",\n        \"min_total\": \"20\",\n        \"min_order_items\": null,\n        \"is_for_mobile\": null,\n        \"status\": \"Active\",\n        \"created_at\": \"2024-01-24T09:51:09.000000Z\",\n        \"orders\": []\n    }\n}"
+            },
+            {
+              "name": "Create minimum_product_quantity discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "test name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "test description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "value_type",
+                      "value": "fixed",
+                      "type": "text"
+                    },
+                    {
+                      "key": "type",
+                      "value": "minimum_product_quantity",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_total",
+                      "value": "20",
+                      "type": "text"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "30",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_for_mobile",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "2024-01-27 01:15:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "2024-02-01 13:10:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][id]",
+                      "value": "98895975-672a-4544-bd20-da88aede2159",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[1][id]",
+                      "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[2][id]",
+                      "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                      "type": "text"
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "9",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "12",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[0][min_item_quantity]",
+                      "value": "2",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[1][min_item_quantity]",
+                      "value": "4",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[2][min_item_quantity]",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_order_items",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:51:57 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:51:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "58"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 09:51:57 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Discount created successfully.\",\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"test name\",\n        \"description\": \"test description\",\n        \"type\": \"minimum_product_quantity\",\n        \"value_type\": \"fixed\",\n        \"start_at\": \"2024-01-27 01:15:00\",\n        \"end_at\": \"2024-02-01 13:10:00\",\n        \"amount\": \"30\",\n        \"min_total\": \"20\",\n        \"min_order_items\": null,\n        \"is_for_mobile\": null,\n        \"status\": \"Active\",\n        \"created_at\": \"2024-01-24T09:51:57.000000Z\",\n        \"orders\": []\n    }\n}"
+            },
+            {
+              "name": "Create minimum_order_items discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "test name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "test description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "value_type",
+                      "value": "fixed",
+                      "type": "text"
+                    },
+                    {
+                      "key": "type",
+                      "value": "minimum_order_items",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_total",
+                      "value": "20",
+                      "type": "text"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "30",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_for_mobile",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "2024-01-27 01:15:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "2024-02-01 13:10:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][id]",
+                      "value": "98895975-672a-4544-bd20-da88aede2159",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][id]",
+                      "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][id]",
+                      "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "9",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "12",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[0][min_item_quantity]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][min_item_quantity]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][min_item_quantity]",
+                      "value": "1",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "min_order_items",
+                      "value": "3",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:52:28 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:52:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 09:52:28 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Discount created successfully.\",\n    \"data\": {\n        \"id\": 5,\n        \"name\": \"test name\",\n        \"description\": \"test description\",\n        \"type\": \"minimum_order_items\",\n        \"value_type\": \"fixed\",\n        \"start_at\": \"2024-01-27 01:15:00\",\n        \"end_at\": \"2024-02-01 13:10:00\",\n        \"amount\": \"30\",\n        \"min_total\": \"20\",\n        \"min_order_items\": \"3\",\n        \"is_for_mobile\": null,\n        \"status\": \"Active\",\n        \"created_at\": \"2024-01-24T09:52:28.000000Z\",\n        \"orders\": []\n    }\n}"
+            },
+            {
+              "name": "Create total_amount discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "test name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "test description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "value_type",
+                      "value": "fixed",
+                      "type": "text"
+                    },
+                    {
+                      "key": "type",
+                      "value": "total_amount",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_total",
+                      "value": "20",
+                      "type": "text"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "30",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_for_mobile",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "2024-01-27 01:15:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "2024-02-01 13:10:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][id]",
+                      "value": "98895975-672a-4544-bd20-da88aede2159",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][id]",
+                      "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][id]",
+                      "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "9",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "12",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[0][min_item_quantity]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][min_item_quantity]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][min_item_quantity]",
+                      "value": "1",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "min_order_items",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:53:07 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:53:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "58"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 09:53:07 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Discount created successfully.\",\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"test name\",\n        \"description\": \"test description\",\n        \"type\": \"total_amount\",\n        \"value_type\": \"fixed\",\n        \"start_at\": \"2024-01-27 01:15:00\",\n        \"end_at\": \"2024-02-01 13:10:00\",\n        \"amount\": \"30\",\n        \"min_total\": \"20\",\n        \"min_order_items\": null,\n        \"is_for_mobile\": null,\n        \"status\": \"Active\",\n        \"created_at\": \"2024-01-24T09:53:07.000000Z\",\n        \"orders\": []\n    }\n}"
+            },
+            {
+              "name": "Create date_time discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "test name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "test description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "value_type",
+                      "value": "fixed",
+                      "type": "text"
+                    },
+                    {
+                      "key": "type",
+                      "value": "date_time",
+                      "type": "text"
+                    },
+                    {
+                      "key": "min_total",
+                      "value": "20",
+                      "type": "text"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "30",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "is_for_mobile",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "2024-01-27 01:15:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "2024-02-01 13:10:00",
+                      "type": "text"
+                    },
+                    {
+                      "key": "products[0][id]",
+                      "value": "98895975-672a-4544-bd20-da88aede2159",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][id]",
+                      "value": "98895975-748c-41d1-b9d6-94d3939df170",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][id]",
+                      "value": "98895975-7896-4cad-949b-5ca9b0cb0d7e",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "9",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categories_ids[]",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "areas_ids[]",
+                      "value": "12",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[0][min_item_quantity]",
+                      "value": "2",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[1][min_item_quantity]",
+                      "value": "4",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "products[2][min_item_quantity]",
+                      "value": "1",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "min_order_items",
+                      "value": "3",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:53:41 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 09:53:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 09:53:41 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Discount created successfully.\",\n    \"data\": {\n        \"id\": 7,\n        \"name\": \"test name\",\n        \"description\": \"test description\",\n        \"type\": \"date_time\",\n        \"value_type\": \"fixed\",\n        \"start_at\": \"2024-01-27 01:15:00\",\n        \"end_at\": \"2024-02-01 13:10:00\",\n        \"amount\": \"30\",\n        \"min_total\": \"20\",\n        \"min_order_items\": null,\n        \"is_for_mobile\": null,\n        \"status\": \"Active\",\n        \"created_at\": \"2024-01-24T09:53:41.000000Z\",\n        \"orders\": []\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update discount",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "10258|jXAS1NUctiKOlFI1fejDDWAIIQY69aGQjRfOgA3Ceeacf126",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"_method\": \"PUT\",\n    \"start_at\": \"2024-02-25 13:05:00\",\n    \"end_at\" : \"2024-04-21 14:02:00\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{local}}/api/discounts/4",
+              "host": ["{{local}}"],
+              "path": ["api", "discounts", "4"]
+            }
+          },
+          "response": [
+            {
+              "name": "Update product and category discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"_method\": \"PUT\",\n    \"products\": [\n        {\n            \"id\": \"98895975-672a-4544-bd20-da88aede2159\"\n        }\n    ],\n    \"categories_ids\": [\n        3,\n        4\n    ]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts/4",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts", "4"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:10:46 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:10:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 12:10:46 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Discount updated successfully.\",\n    \"data\": []\n}"
+            },
+            {
+              "name": "Update area discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"_method\": \"PUT\",\n    \"areas_ids\": [\n        3,\n        4,\n        8\n    ]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts/4",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts", "4"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:12:10 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:12:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "58"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 12:12:10 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Discount updated successfully.\",\n    \"data\": []\n}"
+            },
+            {
+              "name": "Update minimum_product_quantity discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"_method\": \"PUT\",\n    \"products\": [\n        {\n            \"id\": \"98895975-672a-4544-bd20-da88aede2159\",\n            \"min_item_quantity\": 3\n        }\n    ]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts/4",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts", "4"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:16:32 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:16:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "58"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 12:16:32 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Discount updated successfully.\",\n    \"data\": []\n}"
+            },
+            {
+              "name": "Update total_amount discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"_method\": \"PUT\",\n    \"min_total\": 230\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts/4",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts", "4"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:17:29 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:17:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 12:17:29 GMT; Max-Age=31536000; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Discount updated successfully.\",\n    \"data\": []\n}"
+            },
+            {
+              "name": "Update date_time discount",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"_method\": \"PUT\",\n    \"start_at\": \"2024-02-25 13:05:00\",\n    \"end_at\" : \"2024-04-21 14:02:00\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{local}}/api/discounts/4",
+                  "host": ["{{local}}"],
+                  "path": ["api", "discounts", "4"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "localhost:8000"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:18:47 GMT"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 24 Jan 2024 12:18:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.1.12-1ubuntu4.3"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "X-RateLimit-Limit",
+                  "value": "60"
+                },
+                {
+                  "key": "X-RateLimit-Remaining",
+                  "value": "59"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel_session=1ZVwQMTVLjQEmpP3K6xu9UYH9xjLpjyYX4AG5LFF; expires=Thu, 23-Jan-2025 12:18:46 GMT; Max-Age=31535999; path=/; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Discount updated successfully.\",\n    \"data\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete discount",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "10258|jXAS1NUctiKOlFI1fejDDWAIIQY69aGQjRfOgA3Ceeacf126",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{local}}/api/discounts/4",
+              "host": ["{{local}}"],
+              "path": ["api", "discounts", "4"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "admin_token_local",
+      "value": "10268|qwPDeGvgq8VQdH3wXyPVVplPAunBZ1nDddHktgbV"
+    }
+  ]
+}

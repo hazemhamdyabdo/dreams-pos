@@ -1,9 +1,10 @@
-import paymentmethods from "./public-code/paymentmethods";
-import buildings from "./public-code/buildings";
-import nationalities from "./public-code/nationalities";
-import banks from "./public-code/banks";
-import rentTypes from "./public-code/rentTypes";
-import kitchensTypes from "./public-code/kitchensTypes";
+// import paymentmethods from "./public-code/paymentmethods";
+// import buildings from "./public-code/buildings";
+// import nationalities from "./public-code/nationalities";
+// import banks from "./public-code/banks";
+// import rentTypes from "./public-code/rentTypes";
+// import kitchensTypes from "./public-code/kitchensTypes";
+import publiccode from "./publiccode";
 
 export default [
   {
@@ -14,15 +15,7 @@ export default [
       headerClass: "header",
       sidebarClass: "",
     },
-    children: [
-      ...banks,
-      ...buildings,
-      ...paymentmethods,
-      ...buildings,
-      ...nationalities,
-      ...rentTypes,
-      ...kitchensTypes,
-    ],
+    children: [...publiccode],
   },
   {
     path: "/index-one",

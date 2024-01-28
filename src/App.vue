@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
-    <router-view />
-    <!-- <b-overlay :show="show"> span hello</b-overlay> -->
-  </div>
+	<div id="app">
+		<router-view />
+		<!-- <b-overlay :show="show"> span hello</b-overlay> -->
+	</div>
 </template>
 <script>
 const images = require("@/assets/img/icons/sidebar-icon-01.png");
@@ -21,106 +21,106 @@ const images14 = require("@/assets/img/layout-03.png");
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import store from "@/store/app";
 export default {
-  name: "App",
-  data: function () {
-    return { status: false };
-  },
-  computed: {
-    ...mapGetters({
-      show: "app.overLay",
-    }),
-  },
-  mounted() {
-    console.log(store);
-    // Sidebar Visible
+	name: "App",
+	data: function () {
+		return { status: false };
+	},
+	computed: {
+		...mapGetters({
+			show: "app.overLay",
+		}),
+	},
+	mounted() {
+		console.log(store);
+		// Sidebar Visible
 
-    $(".open-layout").on("click", function (s) {
-      s.preventDefault();
-      $(".sidebar-layout").addClass("show-layout");
-      $(".sidebar-settings").removeClass("show-settings");
-    });
-    $(".btn-closed").on("click", function (s) {
-      s.preventDefault();
-      $(".sidebar-layout").removeClass("show-layout");
-    });
-    $(".open-settings").on("click", function (s) {
-      s.preventDefault();
-      $(".sidebar-settings").addClass("show-settings");
-      $(".sidebar-layout").removeClass("show-layout");
-    });
+		$(".open-layout").on("click", function (s) {
+			s.preventDefault();
+			$(".sidebar-layout").addClass("show-layout");
+			$(".sidebar-settings").removeClass("show-settings");
+		});
+		$(".btn-closed").on("click", function (s) {
+			s.preventDefault();
+			$(".sidebar-layout").removeClass("show-layout");
+		});
+		$(".open-settings").on("click", function (s) {
+			s.preventDefault();
+			$(".sidebar-settings").addClass("show-settings");
+			$(".sidebar-layout").removeClass("show-layout");
+		});
 
-    $(".btn-closed").on("click", function (s) {
-      s.preventDefault();
-      $(".sidebar-settings").removeClass("show-settings");
-    });
+		$(".btn-closed").on("click", function (s) {
+			s.preventDefault();
+			$(".sidebar-settings").removeClass("show-settings");
+		});
 
-    $(".open-siderbar").on("click", function (s) {
-      s.preventDefault();
-      $(".siderbar-view").addClass("show-sidebar");
-    });
+		$(".open-siderbar").on("click", function (s) {
+			s.preventDefault();
+			$(".siderbar-view").addClass("show-sidebar");
+		});
 
-    $(".btn-closed").on("click", function (s) {
-      s.preventDefault();
-      $(".siderbar-view").removeClass("show-sidebar");
-    });
+		$(".btn-closed").on("click", function (s) {
+			s.preventDefault();
+			$(".siderbar-view").removeClass("show-sidebar");
+		});
 
-    if ($(".toggle-switch").length > 0) {
-      const toggleSwitch = document.querySelector(
-        '.toggle-switch input[type="checkbox"]'
-      );
-      const currentTheme = localStorage.getItem("theme");
-      var app = document.getElementsByTagName("BODY")[0];
+		if ($(".toggle-switch").length > 0) {
+			const toggleSwitch = document.querySelector(
+				'.toggle-switch input[type="checkbox"]'
+			);
+			const currentTheme = localStorage.getItem("theme");
+			var app = document.getElementsByTagName("BODY")[0];
 
-      if (currentTheme) {
-        app.setAttribute("data-theme", currentTheme);
+			if (currentTheme) {
+				app.setAttribute("data-theme", currentTheme);
 
-        if (currentTheme === "dark") {
-          toggleSwitch.checked = true;
-        }
-      }
+				if (currentTheme === "dark") {
+					toggleSwitch.checked = true;
+				}
+			}
 
-      function switchTheme(e) {
-        if (e.target.checked) {
-          app.setAttribute("data-theme", "dark");
-          localStorage.setItem("theme", "dark");
-        } else {
-          app.setAttribute("data-theme", "light");
-          localStorage.setItem("theme", "light");
-        }
-      }
+			function switchTheme(e) {
+				if (e.target.checked) {
+					app.setAttribute("data-theme", "dark");
+					localStorage.setItem("theme", "dark");
+				} else {
+					app.setAttribute("data-theme", "light");
+					localStorage.setItem("theme", "light");
+				}
+			}
 
-      toggleSwitch.addEventListener("change", switchTheme, false);
-    }
+			toggleSwitch.addEventListener("change", switchTheme, false);
+		}
 
-    if (window.location.hash == "#LightMode") {
-      localStorage.setItem("theme", "dark");
-    } else {
-      if (window.location.hash == "#DarkMode") {
-        localStorage.setItem("theme", "light");
-      }
-    }
+		if (window.location.hash == "#LightMode") {
+			localStorage.setItem("theme", "dark");
+		} else {
+			if (window.location.hash == "#DarkMode") {
+				localStorage.setItem("theme", "light");
+			}
+		}
 
-    $("ul.tabs li").click(function () {
-      var $this = $(this);
-      var $theTab = $(this).attr("id");
-      console.log($theTab);
-      if ($this.hasClass("active")) {
-        // do nothing
-      } else {
-        $this
-          .closest(".tabs_wrapper")
-          .find("ul.tabs li, .tabs_container .tab_content")
-          .removeClass("active");
-        $(
-          '.tabs_container .tab_content[data-tab="' +
-            $theTab +
-            '"], ul.tabs li[id="' +
-            $theTab +
-            '"]'
-        ).addClass("active");
-      }
-    });
-    var customize_link = `<div class="customizer-links"> 
+		$("ul.tabs li").click(function () {
+			var $this = $(this);
+			var $theTab = $(this).attr("id");
+			console.log($theTab);
+			if ($this.hasClass("active")) {
+				// do nothing
+			} else {
+				$this
+					.closest(".tabs_wrapper")
+					.find("ul.tabs li, .tabs_container .tab_content")
+					.removeClass("active");
+				$(
+					'.tabs_container .tab_content[data-tab="' +
+					$theTab +
+					'"], ul.tabs li[id="' +
+					$theTab +
+					'"]'
+				).addClass("active");
+			}
+		});
+		var customize_link = `<div class="customizer-links"> 
 			<ul class="sticky-sidebar">
 				<li class="sidebar-icons">
 					<a href="#" class="add-setting" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Tooltip on left">
@@ -302,103 +302,110 @@ export default {
 		 	</div>
 	  	</div>`;
 
-    $("body").append(customize_link);
+		$("body").append(customize_link);
 
-    $(".add-setting").on("click", function (e) {
-      e.preventDefault();
-      $(".preview-toggle.sidebar-settings").addClass("show-settings");
-    });
-    $(".sidebar-close").on("click", function (e) {
-      e.preventDefault();
-      $(".preview-toggle.sidebar-settings").removeClass("show-settings");
-    });
-    $(".navigation-add").on("click", function (e) {
-      e.preventDefault();
-      $(".nav-toggle.sidebar-settings").addClass("show-settings");
-    });
-    $(".sidebar-close").on("click", function (e) {
-      e.preventDefault();
-      $(".nav-toggle.sidebar-settings").removeClass("show-settings");
-    });
+		$(".add-setting").on("click", function (e) {
+			e.preventDefault();
+			$(".preview-toggle.sidebar-settings").addClass("show-settings");
+		});
+		$(".sidebar-close").on("click", function (e) {
+			e.preventDefault();
+			$(".preview-toggle.sidebar-settings").removeClass("show-settings");
+		});
+		$(".navigation-add").on("click", function (e) {
+			e.preventDefault();
+			$(".nav-toggle.sidebar-settings").addClass("show-settings");
+		});
+		$(".sidebar-close").on("click", function (e) {
+			e.preventDefault();
+			$(".nav-toggle.sidebar-settings").removeClass("show-settings");
+		});
 
-    // DarkMode with LocalStorage
-    if ($("#dark-mode-toggle").length > 0) {
-      $("#dark-mode-toggle").children(".light-mode").addClass("active");
-      let darkMode = localStorage.getItem("darkMode");
+		// DarkMode with LocalStorage
+		if ($("#dark-mode-toggle").length > 0) {
+			$("#dark-mode-toggle").children(".light-mode").addClass("active");
+			let darkMode = localStorage.getItem("darkMode");
 
-      const darkModeToggle = document.querySelector("#dark-mode-toggle");
+			const darkModeToggle = document.querySelector("#dark-mode-toggle");
 
-      const enableDarkMode = () => {
-        document.body.setAttribute("data-theme", "dark");
-        $("#dark-mode-toggle").children(".dark-mode").addClass("active");
-        $("#dark-mode-toggle").children(".light-mode").removeClass("active");
-        localStorage.setItem("darkMode", "enabled");
-      };
+			const enableDarkMode = () => {
+				document.body.setAttribute("data-theme", "dark");
+				$("#dark-mode-toggle").children(".dark-mode").addClass("active");
+				$("#dark-mode-toggle").children(".light-mode").removeClass("active");
+				localStorage.setItem("darkMode", "enabled");
+			};
 
-      const disableDarkMode = () => {
-        document.body.removeAttribute("data-theme", "dark");
-        $("#dark-mode-toggle").children(".dark-mode").removeClass("active");
-        $("#dark-mode-toggle").children(".light-mode").addClass("active");
-        localStorage.setItem("darkMode", null);
-      };
+			const disableDarkMode = () => {
+				document.body.removeAttribute("data-theme", "dark");
+				$("#dark-mode-toggle").children(".dark-mode").removeClass("active");
+				$("#dark-mode-toggle").children(".light-mode").addClass("active");
+				localStorage.setItem("darkMode", null);
+			};
 
-      if (darkMode === "enabled") {
-        enableDarkMode();
-      }
+			if (darkMode === "enabled") {
+				enableDarkMode();
+			}
 
-      darkModeToggle.addEventListener("click", () => {
-        darkMode = localStorage.getItem("darkMode");
+			darkModeToggle.addEventListener("click", () => {
+				darkMode = localStorage.getItem("darkMode");
 
-        if (darkMode !== "enabled") {
-          enableDarkMode();
-        } else {
-          disableDarkMode();
-        }
-      });
-    }
-  },
-  methods: {
-    ...mapActions({
-      setBranches: "app/setBranches",
-    }),
-    ...mapMutations({
-      setCompany: "app/setCompany",
-    }),
-  },
+				if (darkMode !== "enabled") {
+					enableDarkMode();
+				} else {
+					disableDarkMode();
+				}
+			});
+		}
+	},
+	methods: {
+		...mapActions({
+			setBranches: "app/setBranches",
+		}),
+		...mapMutations({
+			setCompany: "app/setCompany",
+		}),
+	},
 };
 </script>
 <style>
+#body {
+	font-family: "Cairo", sans-serif !important;
+}
+
+
 .b-table-empty-slot,
 .b-table {
-  text-align: center !important;
+	text-align: center !important;
 }
+
 .pagination {
-  --bs-pagination-padding-x: 0.75rem;
-  --bs-pagination-padding-y: 0.375rem;
-  --bs-pagination-font-size: 1rem;
-  --bs-pagination-color: var(--bs-link-color);
-  --bs-pagination-bg: #fff;
-  --bs-pagination-border-width: 1px;
-  --bs-pagination-border-color: #dee2e6;
-  --bs-pagination-border-radius: 0.375rem;
-  --bs-pagination-hover-color: var(--bs-link-hover-color);
-  --bs-pagination-hover-bg: #e9ecef;
-  --bs-pagination-hover-border-color: #dee2e6;
-  --bs-pagination-focus-color: var(--bs-link-hover-color);
-  --bs-pagination-focus-bg: #e9ecef;
-  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  --bs-pagination-active-color: #fff;
-  --bs-pagination-active-bg: #ff9f43 !important;
-  --bs-pagination-active-border-color: #0d6efd;
-  --bs-pagination-disabled-color: #6c757d;
-  --bs-pagination-disabled-bg: #fff;
-  --bs-pagination-disabled-border-color: #dee2e6;
-  display: flex;
-  padding-right: 0;
-  list-style: none;
+	--bs-pagination-padding-x: 0.75rem;
+	--bs-pagination-padding-y: 0.375rem;
+	--bs-pagination-font-size: 1rem;
+	--bs-pagination-color: var(--bs-link-color);
+	--bs-pagination-bg: #fff;
+	--bs-pagination-border-width: 1px;
+	--bs-pagination-border-color: #dee2e6;
+	--bs-pagination-border-radius: 0.375rem;
+	--bs-pagination-hover-color: var(--bs-link-hover-color);
+	--bs-pagination-hover-bg: #e9ecef;
+	--bs-pagination-hover-border-color: #dee2e6;
+	--bs-pagination-focus-color: var(--bs-link-hover-color);
+	--bs-pagination-focus-bg: #e9ecef;
+	--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+	--bs-pagination-active-color: #fff;
+	--bs-pagination-active-bg: #ff9f43 !important;
+	--bs-pagination-active-border-color: #0d6efd;
+	--bs-pagination-disabled-color: #6c757d;
+	--bs-pagination-disabled-bg: #fff;
+	--bs-pagination-disabled-border-color: #dee2e6;
+	display: flex;
+	padding-right: 0;
+	list-style: none;
 }
+
 .form-control.is-valid,
 .was-validated .form-control:valid {
-  border-color: #fe9f43 !important;
+	border-color: #fe9f43 !important;
 }
 </style>

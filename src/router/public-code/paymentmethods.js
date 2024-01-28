@@ -1,6 +1,6 @@
 export default [
   {
-    path: "/PaymentMehtod",
+    path: "/paymentMehtod",
     name: "PaymentMehtod",
     component: () =>
       import("@/views/pages/PublicCodes/paymentmethods/List.vue"),

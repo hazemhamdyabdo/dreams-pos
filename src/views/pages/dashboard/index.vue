@@ -8,4 +8,12 @@
     <RouterView />
   </div>
 </template>
-<script setup></script>
+<script setup>
+
+</script>
+
+<style>
+* {
+  font-family: "Cairo", sans-serif !important;
+}
+</style>

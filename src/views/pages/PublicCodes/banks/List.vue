@@ -14,6 +14,7 @@
               :actions="true"
             /> -->
             <SecTable :columns="tableColumns" :data="dummyData" />
+            <g-table :items="dummyData" :total-rows="dummyData.length" :perPage="10"></g-table>
           </div>
         </div>
       </div>
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import GTable from "../../Shared/Table.vue";
+import GTable from "../../Shared/lastTable/GTable.vue";
 import HaTable from "@/views/pages/Shared/table/HaTable.vue";
 import FormItem from "@/components/form/inputs/field.vue";
 import SecTable from "../../Shared/table/SecTable.vue";
@@ -86,6 +87,70 @@ export default {
           notes: 4,
         },
         {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
+          id: 2,
+          code: 69,
+          arabicName: "ياسر",
+          accountNumber: 888,
+          iban: 11,
+          notes: 4,
+        },
+        {
           id: 3,
           code: 79,
           arabicName: "احمد",
@@ -102,7 +167,106 @@ export default {
           notes: 2,
         },
       ];
+
     },
+    duData: [
+      {
+        "accountNumber": "string",
+        "iban": "string",
+        "branchId": 0,
+        "isShared": true,
+        "code": "string",
+        "arabicName": "string",
+        "englishName": "string",
+        "notes": "string",
+        "id": 1011,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": "800700",
+        "iban": "300300",
+        "branchId": 21,
+        "isShared": true,
+        "code": "6",
+        "arabicName": "بنك فيصل الاسلامى",
+        "englishName": "بنك فيصل الاسلامى",
+        "notes": "لا يوجد",
+        "id": 1009,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": "5005000",
+        "iban": "200200",
+        "branchId": 21,
+        "isShared": false,
+        "code": "5",
+        "arabicName": "بنك القاهرة",
+        "englishName": "بنك القاهرة",
+        "notes": null,
+        "id": 1008,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": null,
+        "iban": null,
+        "branchId": 21,
+        "isShared": false,
+        "code": "3",
+        "arabicName": "بنك مصر",
+        "englishName": "بنك مصر",
+        "notes": null,
+        "id": 1006,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": "147852369",
+        "iban": "258963147",
+        "branchId": 21,
+        "isShared": true,
+        "code": "2",
+        "arabicName": "البنك الاهلى المصرى",
+        "englishName": "البنك الاهلى المصرى",
+        "notes": "حساب افراد",
+        "id": 4,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": "1452222",
+        "iban": "123456",
+        "branchId": 0,
+        "isShared": true,
+        "code": "3",
+        "arabicName": "َQNB",
+        "englishName": "QNB",
+        "notes": "حساب شركات",
+        "id": 3,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": "13009466",
+        "iban": "13009466",
+        "branchId": 0,
+        "isShared": true,
+        "code": "ee",
+        "arabicName": "CIB",
+        "englishName": "cib",
+        "notes": "حساب شخصى",
+        "id": 2,
+        "tenantId": 0
+      },
+      {
+        "accountNumber": "500500",
+        "iban": "200200",
+        "branchId": 1,
+        "isShared": true,
+        "code": "1",
+        "arabicName": "البنك الاهلى",
+        "englishName": "البنك الاهلى",
+        "notes": "string",
+        "id": 1,
+        "tenantId": 0
+      }
+    ]
   },
   mounted() {
     this.getItems();
@@ -152,9 +316,8 @@ export default {
       );
       if (relatedPayMethod) {
         this.doneAlert({
-          text: `${this.$t("bankRelatedToPaymentMethod")} ${
-            relatedPayMethod.arabicName
-          }`,
+          text: `${this.$t("bankRelatedToPaymentMethod")} ${relatedPayMethod.arabicName
+            }`,
           type: "warning",
         });
         return true;

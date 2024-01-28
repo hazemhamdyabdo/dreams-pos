@@ -6,7 +6,7 @@
         <!-- /add -->
         <div class="card">
           <div class="card-body">
-            <g-table
+            <!-- <g-table
               ref="guardians-table"
               :items="items"
               :columns="tableColumns"
@@ -72,7 +72,9 @@
                   </b-button>
                 </div>
               </template>
-            </g-table>
+            </g-table> -->
+
+            <!-- <GTbale></GTbale> -->
           </div>
         </div>
       </div>
@@ -81,11 +83,11 @@
 </template>
 
 <script>
-import GTable from "../../Shared/Table.vue";
+// import GTable from "../../Shared/lastTable/GTable.vue";
 
 export default {
   components: {
-    GTable,
+    // GTable,
   },
   data() {
     return {

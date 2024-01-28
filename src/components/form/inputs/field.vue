@@ -1,7 +1,7 @@
 <template>
   <b-form-group :label="hideLable ? '' : $t($attrs['label-text'])">
     <Field ref="fieldValidator" v-slot="{ errors }" :name="$t($attrs['label-text']) || $t($attrs['name'])"
-      :id="$t($attrs['label-text']) || $t($attrs['name'])" :rules="rules || ''" v-model="itemValue" @input="(v) => {
+      :id="$t($attrs['label-text']) || $t($attrs['name'])" :rules="rules || ''" v-model="localValue" @input="(v) => {
         handelInput(v);
       }
         " @change="onChange" @focus="onFocus" @blur="onBlur"
@@ -15,7 +15,7 @@
             <slot name="append" />
           </template>
           <component ref="input1" :is="field" :type="type" :placeholder="placeholder || ''" :options="selectData"
-            v-model="itemValue" v-bind="attrs" v-on="listeners" :id="$t($attrs['label-text']) || $t($attrs['name'])"
+            v-model="localValue" v-bind="attrs" v-on="listeners" :id="$t($attrs['label-text']) || $t($attrs['name'])"
             :dir="dir" :disabled="disabled" :readonly="readonly" :multiple="multiple" @input="(v) => {
               handelInput(v);
             }
@@ -30,7 +30,7 @@
           </component>
         </b-input-group>
         <component v-else ref="input2" :is="field" :id="$t($attrs['label-text']) || $t($attrs['name'])" :type="type"
-          :placeholder="placeholder || ''" :options="selectData" v-model="itemValue"
+          :placeholder="placeholder || ''" :options="selectData" v-model="localValue"
           :name="$attrs['name'] || $attrs['label-text'] || ''" :multiple="multiple" v-bind="attrs" v-on="listeners"
           :dir="dir" :disabled="disabled || ($attrs.name === 'code' && $route.params.id > 0)
             " :readonly="readonly" @change="onChange" @input="(v) => {
@@ -45,7 +45,6 @@
             {{ $t("Sorry, no matching options") }}
           </template>
         </component>
-        {{ errors }}
         <small :class="{
           'd-none':
             (!$attrs['name'] && !$attrs['label-text']) || toolTipError,
@@ -70,7 +69,7 @@ export default {
     dir: {
       type: String,
     },
-    value: {
+    modelValue: {
       type: [Number, String, Object, Array],
       required: false,
       default: null,
@@ -110,10 +109,7 @@ export default {
     const { name, placeholder, type, lookup } = attrs;
 
     let { field } = attrs;
-
-    const { modelValue, errorMessage, validate, value } = useField(
-      attrs["label-text"]
-    );
+    const { errorMessage, validate, value } = useField(attrs["label-text"]);
 
     if (field === "select") field = "v-select";
     else field = "b-form-input";
@@ -136,8 +132,8 @@ export default {
     }, {});
 
     const updateAndValidate = () => {
-      value.value = modelValue; // Update the value to trigger reactivity
-      console.log("hello 2", modelValue);
+      value.value = props.modelValue; // Update the value to trigger reactivity
+
       validate(); // Trigger revalidation
     };
 
@@ -155,7 +151,6 @@ export default {
       lookup,
       errors,
       listeners,
-      itemValue: modelValue,
       errors: errorMessage,
       updateAndValidate,
     };
@@ -163,85 +158,84 @@ export default {
   data() {
     return {
       selectData: [],
-      itemValue: "",
+      localValue: "",
       isFocus: false,
       isDirty: false,
     };
   },
   watch: {
-    options(newVal) {
-      this.handeloptions(newVal);
+    options: {
+      immediate: true,
+      handler(newValue) {
+        this.handeloptions(newValue);
+      },
     },
-    itemValue(oldVal, newVal) {
-      this.handelValue(newVal);
-      this.updateAndValidate();
+    modelValue: {
+      immediate: true,
+      handler(newValue) {
+        this.localValue = newValue;
+      },
     },
-  },
-  mounted() {
-    this.handeloptions();
-    this.handelValue(
-      this.type === "number" ? parseFloat(this.value).toFixed(2) : 0
-    );
   },
   methods: {
     handeloptions() {
-      if (Array.isArray(this.options)) this.selectData = this.options;
+      if (Array.isArray(this.options)) {
+        this.selectData = this.options
+      }
+
       else {
         this.$store.dispatch("lookups/getEntity", this.options).then((data) => {
           this.selectData = data;
         });
       }
-      this.handelValue(this.value);
+    },
+    emitValue(value) {
+      this.$emit(
+        "update:modelValue",
+        this.type === "number" ? parseFloat(value) || 0 : value
+      );
+
+      this.$emit("input", value);
     },
     handelValue(newVal) {
       if (this.$attrs.field === "select") {
+        console.log(this.selectData, "this.selectData");
+
         if (!this.multiple) {
-          this.itemValue =
-            this.selectData.find((item) => item[this.itemId] === newVal) ||
-            null;
+          this.emitValue(
+            this.selectData.find((item) => item[this.itemId] === newVal) || null
+          );
         } else {
-          this.itemValue = newVal;
-          this.$emit("update:modelValue", newVal);
+          this.emitValue(newVal);
         }
       } else {
-        this.itemValue = newVal;
-        this.$emit(
-          "update:modelValue",
-          this.type === "number" ? parseFloat(newVal) || 0 : newVal
-        );
-        console.log("hello 1")
+        this.emitValue(newVal);
+
         this.updateAndValidate();
       }
     },
     handelInput(val, isWriteAction = true) {
       this.isDirty = isWriteAction;
       if (this.$attrs.field === "select") {
+        console.log(this.selectData, "this.selectData");
         if (!this.multiple) {
           val = val ? val[this.itemId] : null;
         }
       }
-      this.$emit(
-        "update:modelValue",
-        this.type === "number" ? parseFloat(val) || 0 : val
-      );
-      this.$emit("input", val);
+
+      this.emitValue(val);
+
       this.updateAndValidate();
     },
     onFocus() {
-      if (this.type === "number")
-        this.itemValue = parseFloat(this.itemValue) || 0;
+      //
     },
     onBlur() {
-      if (this.type === "number")
-        this.itemValue = parseFloat(this.itemValue) || 0;
+      //
     },
     onChange(v) {
-      if (this.type === "number" && this.name !== "code")
-        this.itemValue = parseFloat(v).toFixed(2);
-      this.$emit(
-        "update:modelValue",
-        this.type === "number" ? parseFloat(v) || 0 : v
-      );
+      this.emitValue(v);
+
       this.updateAndValidate();
     },
   },

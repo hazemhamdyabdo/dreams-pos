@@ -1,24 +1,14 @@
 <template>
   <div>
     <div class="search-sort">
-      <a class="btn btn-searchset"
-        ><img src="@/assets/img/icons/search-white.svg" alt="img"
-      /></a>
-      <input
-        v-model="searchQuery"
-        @input="updateSearch"
-        placeholder="Search..."
-      />
+      <a class="btn btn-searchset"><img src="@/assets/img/icons/search-white.svg" alt="img" /></a>
+      <input v-model="searchQuery" @input="updateSearch" placeholder="Search..." />
     </div>
     <div class="pagination-container">
       <div class="entries">
         <span>{{ $t("pages count") }}</span>
         <select v-model="itemsPerPage" @change="changeItemsPerPage">
-          <option
-            v-for="option in perPageOptions"
-            :key="option"
-            :value="option"
-          >
+          <option v-for="option in perPageOptions" :key="option" :value="option">
             {{ option }}
           </option>
         </select>
@@ -29,19 +19,11 @@
           &lt;
         </button>
         <template v-for="page in totalPages" :key="page">
-          <button
-            @click="goToPage(page)"
-            :class="{ active: page === currentPage }"
-            class="page"
-          >
+          <button @click="goToPage(page)" :class="{ active: page === currentPage }" class="page">
             {{ page }}
           </button>
         </template>
-        <button
-          @click="nextPage"
-          :disabled="currentPage === totalPages"
-          class="next"
-        >
+        <button @click="nextPage" :disabled="currentPage === totalPages" class="next">
           &gt;
         </button>
       </div>
@@ -61,7 +43,6 @@
               </span>
             </div>
           </th>
-          <th>action</th>
         </tr>
       </thead>
       <tbody>
@@ -70,23 +51,13 @@
             {{ item[column] }}
           </td>
           <td>
-            <router-link
-              class="me-3"
-              :to="{ name: 'product-details', params: { id: index } }"
-            >
+            <router-link class="me-3" :to="{ name: 'product-details', params: { id: index } }">
               <img src="@/assets/img/icons/eye.svg" alt="img" />
             </router-link>
-            <router-link
-              class="me-3"
-              :to="{ name: 'editproduct', params: { id: index } }"
-            >
+            <router-link class="me-3" :to="{ name: 'editproduct', params: { id: index } }">
               <img src="@/assets/img/icons/edit.svg" alt="img" />
             </router-link>
-            <a
-              class="confirm-text"
-              href="javascript:void(0);"
-              @click="showAlert"
-            >
+            <a class="confirm-text" href="javascript:void(0);" @click="showAlert">
               <img src="@/assets/img/icons/delete.svg" alt="img" />
             </a>
           </td>
@@ -143,8 +114,9 @@ export default {
     filteredData() {
       const query = this.searchQuery.toLowerCase();
       return this.sortedData.filter((item) =>
-        this.columns.some((column) =>
-          String(item[column]).toLowerCase().includes(query)
+        this.columns.some((column) => {
+          return String(item[column]).toLowerCase().includes(query)
+        }
         )
       );
     },
@@ -152,6 +124,7 @@ export default {
       return Math.ceil(this.filteredData.length / this.itemsPerPage);
     },
     paginatedData() {
+      console.log(this.currentPage, "currentPage")
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
       return this.filteredData.slice(startIndex, endIndex);
@@ -248,11 +221,12 @@ td {
   padding: 8px;
   text-align: left;
 }
+
 th {
   font-weight: 700;
 }
 
-tbody > tr:nth-child(odd) {
+tbody>tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
 
@@ -287,6 +261,7 @@ th span {
   justify-content: flex-end;
   font-size: 1rem;
 }
+
 .entries {
   margin-top: 10px;
   display: flex;
@@ -299,6 +274,7 @@ th span {
   text-align: center;
   border: 1px solid gainsboro;
 }
+
 .btn-searchset {
   position: absolute;
   right: 10.5%;

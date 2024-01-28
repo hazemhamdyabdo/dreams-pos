@@ -1,36 +1,80 @@
 <template>
   <div>
-    <div class="my-2">
+    <div class="my-2"
+      :class="{ 'd-none': !excelButton.visiable && !pdfButton.visiable, 'd-block': searchInput.visiable }">
       <!-- Table Top -->
-      <b-form-input v-model="searchQuery" :clearable="true" :placeholder="$t('search')" />
-      <b-row align-h="between">
+      <b-row align-h="between" :class="{ 'd-none': hideOptions }">
         <!-- Search -->
-        <b-col cols="12" md="4" class="d-none">
-
-          <div v-if="true" class="d-flex align-items-center justify-content-end">
-            <b-form-input v-model="searchQuery" :clearable="true" :placeholder="$t('search')" />
+        <b-col cols="12" md="4">
+          <div v-if="!searchInput.visiable" class="d-flex align-items-center justify-content-end">
+            <b-form-input v-model="searchQuery" class="d-inline-block" :clearable="true" :placeholder="$t('search')" />
           </div>
         </b-col>
 
-        <b-col cols="12" md="12" class="d-flex align-items-center justify-content-end mb-1 mb-md-0">
-          <b-button variant="primary" data-action-type="new" v-if="createButton.visiable" @click="(v) => {
-            $emit('on-create', v);
-          }
-            ">
+        <b-col cols="12" md="4" class="list-buttons d-flex align-items-center justify-content-end mb-1 mb-md-0">
+          <b-button variant="primary" data-action-type="new" v-if="createButton.visiable"
+            v-permission="createButton.permission" @click="(v) => {
+              $emit('on-create', v);
+            }
+              ">
             {{ createButton.text ? $t(createButton.text) : $t('new') }}
+          </b-button>
+          <vue-excel-xlsx v-if="excelButton.visiable" :data="items" :columns="columns" :filename="this.$route.name"
+            :sheetname="'xlsxSheet'" class="btn btn-relief-success ml-1 p-0 ptn-sm">
+            <!-- <img src="@/assets/images/icons/xls.jpg" alt="" style="height: 39px;width: auto;" /> -->
+          </vue-excel-xlsx>
+          <b-button v-if="pdfButton.visiable" variant="relief-danger" class="ml-1 p-0 btn-sm" @click="printDocument">
+            <!-- <img src="@/assets/images/icons/pdf.jpg" alt="" style="height: 39px;width: auto;" /> -->
           </b-button>
         </b-col>
       </b-row>
     </div>
 
+    <b-row v-if="!hideOptions" class="d-flex justify-content-between mb-50 footer-info">
+      <div class="pagi">
+
+
+
+        <!-- page length -->
+        <b-form-group :label="$t('entries')" label-cols="6" label-align="left" label-size="sm" label-for="sortBySelect"
+          class="text-nowrap mb-md-0 ml-5 pl-20 w-fit">
+          <b-form-select id="perPageSelect" v-model="perPage" size="sm" inline @change="(v) => {
+            perPage = v
+            if (perPage === 'الكل') {
+              perPage = 10000
+            }
+          }" :options="perPageOptions" />
+        </b-form-group>
+
+
+
+        <!-- pagination -->
+        <div>
+          <b-pagination hide-ellipsis="true" pills v-model="currentPage" :total-rows="totalRows || items.length"
+            limit="10" :per-page="perPage" aria-controls="mainTable" prev-class="prev-item" next-class="next-item"
+            class="mb-0 mr-1">
+            <template #prev-text>
+              <p style="font-size: 700;">
+                &LT;
+              </p>
+            </template>
+            <template #next-text>
+              <p>
+                &GT;
+              </p>
+            </template>
+          </b-pagination>
+        </div>
+      </div>
+    </b-row>
     <b-row>
       <b-col cols="12" class="printDiv" id="printDiv" ref="printDiv" style="word-wrap: normal;
 letter-spacing: normal;">
-        <b-table v-bind="$attrs" ref="gtable" :items="paginatedData" :fields="columns" primary-key="id" id="mainTable"
-          show-empty striped hover responsive class="position-relative" :per-page="perPage" filter-debounce="700"
-          :current-page="currentPage" :sort-by="sortBy" :sort-desc="isSortDirDesc" :sort-direction="sortDirection"
-          :filter="searchQuery" :filter-included-fields="filterOn" :busy="isBusy" @filtered="onFiltered"
-          :empty-text="$t('noMatchingRecordsFound')">
+        <b-table v-bind="$attrs" ref="gtable" :items="items" :fields="columns" primary-key="id" id="mainTable" show-empty
+          striped hover responsive class="position-relative" :per-page="perPage" filter-debounce="700"
+          :current-page="currentPage" :sort-by.sync="sortBy" :sort-desc.sync="isSortDirDesc"
+          :sort-direction="sortDirection" :filter="searchQuery" :filter-included-fields="filterOn" :busy="isBusy"
+          @filtered="onFiltered" :empty-text="$t('noMatchingRecordsFound')">
 
           <template #head(actions)>
             <span></span>
@@ -39,17 +83,18 @@ letter-spacing: normal;">
             <col v-for="field in scope.fields" :key="field.key" :style="field.style" />
           </template>
 
-          <template v-for="field in columns" v-slot:[`cell(${field.key})`]="{ value }">
+          <template v-for="(field, i) in columns" v-slot:[`cell(${field.key})`]="{ value }">
             <span v-if="field.isLocale" :key="field.key">
               {{ field.isLocale ? $t(value) : value }}
             </span>
-            <!-- <span v-else-if="field.type === 'number'"
-              :key="field.key"
-            >
-              {{ value | fraction('number', 2) }}
-            </span> -->
-            <span v-else :key="field.key1" v-html="value">
+            <span v-else-if="field.type === 'number'" :key="i">
+              {{ value | fraction('number', currentBranch.decimalDigits) }}
             </span>
+            <span v-else :key="i + 1" v-html="value">
+            </span>
+          </template>
+          <template #cell(isIncluded)="data">
+            <slot name="isIncluded" v-bind:item="data.item" />
           </template>
           <template #cell(isReviewed)="data">
             <slot name="isReviewed" v-bind:item="data.item" />
@@ -84,59 +129,9 @@ letter-spacing: normal;">
       </b-col>
       <div v-html="template" id="printPdf"></div>
     </b-row>
-    <b-card-body class="d-flex justify-content-between flex-wrap pt-0" v-if="!hideOptions">
-
-      <!-- page length -->
-      <b-form-group :label="$t('entries')" label-cols="6" label-align="left" label-size="sm" label-for="sortBySelect"
-        class="text-nowrap mb-md-0 mr-1">
-        <b-form-select id="perPageSelect" v-model="perPage" size="sm" inline @change="(v) => {
-          if (perPage === 'الكل') {
-            perPage = 10000
-          }
-        }" :options="perPageOptions" />
-      </b-form-group>
-      <!-- pagination -->
-      <div>
-        <b-pagination v-model="currentPage" :total-rows="totalRows || items.length" :per-page="perPage" first-number
-          last-number prev-class="prev-item" next-class="next-item" class="mb-0 mr-1">
-          <template #prev-text>
-            <feather-icon @change="changeItemsPerPage" icon="ChevronLeftIcon" size="18" />
-          </template>
-          <template #next-text>
-            <feather-icon @change="changeItemsPerPage" icon="ChevronRightIcon" size="18" />
-          </template>
-        </b-pagination>
-      </div>
-      <!-- pagination -->
-      <div class="pagination-container">
-        <div class="entries">
-          <span>{{ $t("pages count") }}</span>
-          <select v-model="perPage" @change="changeItemsPerPage">
-            <option v-for="option in perPageOptions" :key="option" :value="option">
-              {{ option }}
-            </option>
-          </select>
-        </div>
-
-        <div class="pagination">
-          <button @click="prevPage" :disabled="currentPage === 1" class="prev">
-            &lt;
-          </button>
-          <template v-for="page in totalPages" :key="page">
-            <button @click="goToPage(page)" :class="{ active: page === currentPage }" class="page">
-              {{ page }}
-            </button>
-          </template>
-          <button @click="nextPage" :disabled="currentPage === totalPages" class="next">
-            &gt;
-          </button>
-        </div>
-      </div>
-    </b-card-body>
   </div>
 </template>
 <script>
-
 
 export default {
   props: {
@@ -172,8 +167,6 @@ export default {
   emits: ['on-edit', 'on-delete', 'on-view', 'on-create'],
   setup(props, context) {
     let { attrs } = context;
-    // console.log(props.items, "attrs")
-
 
     const {
       perPage,
@@ -192,11 +185,14 @@ export default {
       rowClass,
     } = attrs;
 
+    setTimeout(() => {
+      console.log(attrs.currentPage)
+    }, 1000)
     const defaults = {
-      perPage: perPage || 2,
+      perPage: perPage ?? 10,
       sortDirection: sortDirection || 'asc',
       isSortDirDesc: isSortDirDesc || '',
-      currentPage: currentPage || 1, // parseInt(localStorage.getItem('currentPage')) !== 1 ? parseInt(localStorage.getItem('currentPage')) : 
+      currentPage: currentPage || 1,
       sortBy: sortBy || '',
       createLabel: createLabel || '',
       noAction: noAction || false,
@@ -218,6 +214,18 @@ export default {
         text: '',
         handler: '',
       },
+      excelButton: excelButton || {
+        visiable: true,
+        icon: '',
+        text: '',
+        handler: '',
+      },
+      pdfButton: pdfButton || {
+        visiable: true,
+        icon: '',
+        text: '',
+        handler: '',
+      },
       searchInput: searchInput || {
         visiable: true,
         icon: '',
@@ -229,26 +237,31 @@ export default {
     };
 
     attrs = Object.entries(attrs).reduce((obj, val) => {
-      /* eslint-disable prefer-destructuring */
       if ([...Object.keys(props), ...Object.keys(defaults)].indexOf(val[0]) === -1) obj[val[0]] = val[1];
       return obj;
     }, {});
+
     return defaults;
   },
   data() {
     return {
+      currentPage: 1,
+      perPage: 5,
       item: '',
       searchQuery: '',
       filterOn: [],
       itemsArray: [],
       template: '',
-      hideActions: false,
+      hideActions: false
     };
+  },
+  mounted() {
+    this.columns.forEach((res) => {
+      res.field = res.key
+    });
   },
   computed: {
     filteredData() {
-      console.log(this.currentPage, "items")
-      this.currentPage
       const query = this.searchQuery.toLowerCase();
       return this.items.filter((item) => {
         return Object.keys(item).some((key) => {
@@ -266,21 +279,6 @@ export default {
       const end = start + this.perPage
       return this.filteredData.slice(start, end)
     },
-    // currentP: {
-    //   get() {
-    //     return this.currentPage;
-    //   },
-    //   set(value) {
-    //     // You can define additional logic or side effects here
-    //     this.currentPage = value;
-    //   },
-    // },
-  },
-  mounted() {
-    // this.$refs.gtable.$slots = { ...this.$refs.gtable.$slots, ...this.slots };
-    // this.columns.forEach((res) => {
-    //   res.field = res.key
-    // });
   },
   methods: {
     showRestOfData: function () {
@@ -302,59 +300,51 @@ export default {
       this.showRestOfData();
       this.$emit("search-change", this.searchQuery);
     },
-    goToPage(page) {
-      if (page !== this.currentPage && page >= 1 && page <= this.totalPages) {
-        this.currentPage = page++;
-        this.showRestOfData();
-        console.log(this.currentPage, "after");
-
-      }
-    },
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-        this.showRestOfData();
-      }
-    },
-    nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage++;
-        this.showRestOfData();
-      }
-    },
-    changeItemsPerPage() {
-      this.currentPage = 1;
-      this.showRestOfData();
-    },
-    // updateComputedProperty() {
-    //   this.currentPage = this.currentPage; // Update the underlying data property
-    // },
-    handlePageChange(page) {
-      // this.$router.replace({ query: { page: page.toString() } });
-      // this.currentPage = page;
-    },
-    restorePage() {
-      // // const routePage = this.$route.query.page;
-      // if (routePage) {
-      //   // this.currentPage = parseInt(routePage);
-      // } else {
-      // }
-      // this.currentPage = 1
+    nexPage() {
+      this.currentPage = this.currentPage + 1
     },
     hide() {
       this.hideActions = true
     },
+    pdfExport(name) {
+      html2canvas(document.getElementById('mainTable')).then(function (canvas) {
+        var imgData = canvas.toDataURL('image/png');
+        var imgWidth = 210;
+        var pageHeight = 295;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        var heightLeft = imgHeight;
+
+        var doc = new jsPDF('p', 'mm');
+        var position = 0;
+
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+        doc.save(`${name}.pdf`);
+      });
+    },
+    printDocument() {
+      this.hide()
+      setTimeout(() => {
+        this.pdfExport(this.$route.name)
+        this.hideActions = false
+      }, 500);
+
+    },
     refreshTable() {
-      // this.$refs.gtable.refresh();
+      this.$refs.gtable.refresh();
     },
     // onFiltered(filteredItems) {
-    //   this.totalRows = filteredItems.length;
+    //   console.log(filteredItems, "filtered")
+    //   // this.totalRows = filteredItems.length;
     //   this.currentPage = 1;
     // },
-  },
-  created() {
-    // Call the restorePage method when the component is created to restore the page
-    // this.restorePage();
   },
 };
 </script>
@@ -364,5 +354,20 @@ export default {
   word-wrap: normal;
   letter-spacing: normal;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .list-buttons {
+    margin-top: 1.5rem;
+  }
+}
+
+.footer-info div label {
+  margin-top: 5px;
+}
+
+.pagi {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
