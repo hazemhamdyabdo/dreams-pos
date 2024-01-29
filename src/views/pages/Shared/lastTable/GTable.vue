@@ -11,8 +11,8 @@
           </div>
         </b-col>
 
-        <b-col cols="12" md="4" class="list-buttons d-flex align-items-center justify-content-end mb-1 mb-md-0">
-          <b-button variant="primary" data-action-type="new" v-if="createButton.visiable"
+        <b-col cols="12" md="8" class="list-buttons d-flex align-items-center justify-content-end mb-5 mb-md-3">
+          <b-button variant="primary" data-action-type="new" size="lg" v-if="createButton.visiable"
             v-permission="createButton.permission" @click="(v) => {
               $emit('on-create', v);
             }
@@ -36,8 +36,8 @@
 
 
         <!-- page length -->
-        <b-form-group :label="$t('entries')" label-cols="6" label-align="left" label-size="sm" label-for="sortBySelect"
-          class="text-nowrap mb-md-0 ml-5 pl-20 w-fit">
+        <b-form-group class="entries" :label="$t('entries')" label-cols="6" label-align="6" label-size="lg"
+          label-for="sortBySelect">
           <b-form-select id="perPageSelect" v-model="perPage" size="sm" inline @change="(v) => {
             perPage = v
             if (perPage === 'الكل') {
@@ -71,10 +71,10 @@
       <b-col cols="12" class="printDiv" id="printDiv" ref="printDiv" style="word-wrap: normal;
 letter-spacing: normal;">
         <b-table v-bind="$attrs" ref="gtable" :items="items" :fields="columns" primary-key="id" id="mainTable" show-empty
-          striped hover responsive class="position-relative" :per-page="perPage" filter-debounce="700"
-          :current-page="currentPage" :sort-by.sync="sortBy" :sort-desc.sync="isSortDirDesc"
-          :sort-direction="sortDirection" :filter="searchQuery" :filter-included-fields="filterOn" :busy="isBusy"
-          @filtered="onFiltered" :empty-text="$t('noMatchingRecordsFound')">
+          striped hover responsive class="position-relative table" :per-page="perPage" filter-debounce="700"
+          :current-page="currentPage" :sort-by="sortBy" :sort-desc="isSortDirDesc" :sort-direction="sortDirection"
+          :filter="searchQuery" :filter-included-fields="filterOn" :busy="isBusy" @filtered="onFiltered"
+          :empty-text="$t('noMatchingRecordsFound')">
 
           <template #head(actions)>
             <span></span>
@@ -369,5 +369,17 @@ export default {
 .pagi {
   display: flex;
   justify-content: space-between;
+  justify-items: center;
+}
+
+.table {
+  font-size: 1.2rem;
+}
+
+.entries {
+  width: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
