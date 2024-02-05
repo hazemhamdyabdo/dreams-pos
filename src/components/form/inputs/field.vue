@@ -1,54 +1,123 @@
 <template>
   <b-form-group :label="hideLable ? '' : $t($attrs['label-text'])">
-    <Field ref="fieldValidator" v-slot="{ errors }" :name="$t($attrs['label-text']) || $t($attrs['name'])"
-      :id="$t($attrs['label-text']) || $t($attrs['name'])" :rules="rules || ''" v-model="localValue" @input="(v) => {
-        handelInput(v);
-      }
-        " @change="onChange" @focus="onFocus" @blur="onBlur"
-      :vid="name || $attrs['label-text'] || $attrs['name'] || ''" mode="eager">
+    <Field
+      ref="fieldValidator"
+      v-slot="{ errors }"
+      :name="$t($attrs['label-text']) || $t($attrs['name'])"
+      :id="$t($attrs['label-text']) || $t($attrs['name'])"
+      :rules="rules || ''"
+      v-model="localValue"
+      @input="
+        (v) => {
+          handelInput(v);
+        }
+      "
+      @change="onChange"
+      @focus="onFocus"
+      @blur="onBlur"
+      :vid="name || $attrs['label-text'] || $attrs['name'] || ''"
+      mode="eager"
+    >
       <div class="q-mb-md">
-        <b-input-group :size="attrs.size" class="mb-0" v-if="Object.keys($slots).length">
+        <b-input-group
+          :size="attrs.size"
+          class="mb-0"
+          v-if="Object.keys($slots).length"
+        >
           <template v-if="$slots.prepend" #prepend>
             <slot name="prepend" />
           </template>
           <template v-if="$slots.append" #append>
             <slot name="append" />
           </template>
-          <component ref="input1" :is="field" :type="type" :placeholder="placeholder || ''" :options="selectData"
-            v-model="localValue" v-bind="attrs" v-on="listeners" :id="$t($attrs['label-text']) || $t($attrs['name'])"
-            :dir="dir" :disabled="disabled" :readonly="readonly" :multiple="multiple" @input="(v) => {
-              handelInput(v);
-            }
-              " @change="onChange" @focus="onFocus" @blur="onBlur" @option:selected="(v) => {
-    $emit('change', v);
-  }
-    " @keyup.enter.prevent="" :state="errors && errors.length > 0 ? false : null" v-b-tooltip.hover.v-danger
-            :title="toolTipError && errors ? errors[0] || '' : ''">
+          <component
+            ref="input1"
+            :is="field"
+            :type="type"
+            :placeholder="placeholder || ''"
+            :options="selectData"
+            v-model="localValue"
+            v-bind="{ ...attrs, ...bindOptions }"
+            v-on="listeners"
+            :id="$t($attrs['label-text']) || $t($attrs['name'])"
+            :dir="dir"
+            :disabled="disabled"
+            :readonly="readonly"
+            :multiple="multiple"
+            @input="
+              (v) => {
+                handelInput(v);
+              }
+            "
+            @change="onChange"
+            @focus="onFocus"
+            @blur="onBlur"
+            @option:selected="
+              (v) => {
+                $emit('change', v);
+              }
+            "
+            @keyup.enter.prevent=""
+            :state="errors && errors.length > 0 ? false : null"
+            v-b-tooltip.hover.v-danger
+            :title="toolTipError && errors ? errors[0] || '' : ''"
+          >
             <template v-if="$attrs.field === 'select'" #no-options>
               {{ $t("Sorry, no matching options") }}
             </template>
           </component>
         </b-input-group>
-        <component v-else ref="input2" :is="field" :id="$t($attrs['label-text']) || $t($attrs['name'])" :type="type"
-          :placeholder="placeholder || ''" :options="selectData" v-model="localValue"
-          :name="$attrs['name'] || $attrs['label-text'] || ''" :multiple="multiple" v-bind="attrs" v-on="listeners"
-          :dir="dir" :disabled="disabled || ($attrs.name === 'code' && $route.params.id > 0)
-            " :readonly="readonly" @change="onChange" @input="(v) => {
-    handelInput(v);
-  }
-    " @focus="onFocus" @blur="onBlur" @wheel="$event.target.blur()" @option:selected="(v) => {
-    $emit('change', v);
-  }
-    " :state="errors && errors.length > 0 ? false : null" v-b-tooltip.hover.v-danger
-          :title="toolTipError && errors ? errors[0] || '' : ''">
+
+        <component
+          v-else
+          ref="input2"
+          :is="field"
+          :id="$t($attrs['label-text']) || $t($attrs['name'])"
+          :type="type"
+          :placeholder="placeholder || ''"
+          :options="selectData"
+          v-model="localValue"
+          :name="$attrs['name'] || $attrs['label-text'] || ''"
+          :multiple="multiple"
+          v-bind="{ ...attrs, ...bindOptions }"
+          v-on="listeners"
+          :dir="dir"
+          :disabled="
+            disabled || ($attrs.name === 'code' && $route.params.id > 0)
+          "
+          :readonly="readonly"
+          @change="onChange"
+          @input="
+            (v) => {
+              console.log('input', v);
+              handelInput(v);
+            }
+          "
+          @focus="onFocus"
+          @blur="onBlur"
+          @wheel="$event.target.blur()"
+          @option:selected="
+            (v) => {
+              console.log('selected', v);
+              $emit('change', v);
+            }
+          "
+          :state="errors && errors.length > 0 ? false : null"
+          v-b-tooltip.hover.v-danger
+          :title="toolTipError && errors ? errors[0] || '' : ''"
+        >
           <template v-if="$attrs.field === 'select'" #no-options>
             {{ $t("Sorry, no matching options") }}
           </template>
         </component>
-        <small :class="{
-          'd-none':
-            (!$attrs['name'] && !$attrs['label-text']) || toolTipError,
-        }" class="text-danger">{{ errors[0] }}</small>
+        <small
+          :class="{
+            'd-none':
+              (!$attrs['name'] && !$attrs['label-text']) || toolTipError,
+          }"
+          class="text-danger"
+          >{{ errors[0] }}</small
+        >
       </div>
     </Field>
   </b-form-group>
@@ -68,6 +137,10 @@ export default {
     },
     dir: {
       type: String,
+    },
+    bindOptions: {
+      type: Object,
+      default: () => ({}),
     },
     modelValue: {
       type: [Number, String, Object, Array],
@@ -106,12 +179,13 @@ export default {
   emits: ["update:value", "input", "change", "update:modelValue"],
   setup(props, context) {
     let { attrs } = context;
+
     const { name, placeholder, type, lookup } = attrs;
 
     let { field } = attrs;
     const { errorMessage, validate, value } = useField(attrs["label-text"]);
 
-    if (field === "select") field = "v-select";
+    if (field === "select") field = "vue-select";
     else field = "b-form-input";
     const errors = [];
 
@@ -176,14 +250,18 @@ export default {
         this.localValue = newValue;
       },
     },
+    localValue: {
+      deep: true,
+      handler(newValue) {
+        this.emitValue(newValue);
+      },
+    },
   },
   methods: {
     handeloptions() {
       if (Array.isArray(this.options)) {
-        this.selectData = this.options
-      }
-
-      else {
+        this.selectData = this.options;
+      } else {
         this.$store.dispatch("lookups/getEntity", this.options).then((data) => {
           this.selectData = data;
         });
@@ -199,11 +277,12 @@ export default {
     },
     handelValue(newVal) {
       if (this.$attrs.field === "select") {
-        console.log(this.selectData, "this.selectData");
-
+        this.emitValue(newVal);
         if (!this.multiple) {
           this.emitValue(
-            this.selectData.find((item) => item[this.itemId] === newVal) || null
+            this.selectData.find((item) => {
+              return item[this.itemId] === newVal;
+            }) || null
           );
         } else {
           this.emitValue(newVal);
@@ -217,7 +296,6 @@ export default {
     handelInput(val, isWriteAction = true) {
       this.isDirty = isWriteAction;
       if (this.$attrs.field === "select") {
-        console.log(this.selectData, "this.selectData");
         if (!this.multiple) {
           val = val ? val[this.itemId] : null;
         }
@@ -234,6 +312,8 @@ export default {
       //
     },
     onChange(v) {
+      console.log("change", v);
+
       this.emitValue(v);
 
       this.updateAndValidate();

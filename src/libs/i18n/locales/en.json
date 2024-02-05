@@ -5,5 +5,15 @@
   "Sorry, no matching options": "Sorry, no matching options",
   "Banks": "Banks",
   "pages count": "pages count",
-  "entries": "entries"
+  "entries": "entries",
+  "arabicName": "Arabic name",
+  "NameIsRequired": "Name required",
+  "general": "general",
+  "notes": "Notes",
+  "englishName": "English name",
+  "save": "save",
+  "updatedSuccessfully": "Modified successfully",
+  "savedSuccessfully": "Saved successfully",
+  "new": "addition",
+  "search": "research"
 }

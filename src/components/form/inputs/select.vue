@@ -1,5 +1,10 @@
 <template>
-  <vue-select v-model="selectedValue" :options="optionsData" @input="handleChange" label="customInput" />
+  <vue-select
+    v-model="selectedValue"
+    :options="optionsData"
+    @input="handleChange"
+    label="customInput"
+  />
 </template>
 
 <script>
@@ -29,9 +34,9 @@ export default {
   },
   methods: {
     handleChange(newValue) {
-      console.log(newValue)
+      console.log(newValue, "asdsad");
       this.selectedValue = newValue;
-      this.$emit('input', newValue);
+      this.$emit("input", newValue);
     },
   },
   watch: {
@@ -39,16 +44,19 @@ export default {
       this.selectedValue = newValue;
     },
   },
+  created() {
+    console.log("hello from select", this.options);
+  },
 };
 </script>
 
 <style>
 /* Any necessary styles */
 .form-select.is-valid:not([multiple]):not([size]),
-.form-select.is-valid:not([multiple])[size='1'],
+.form-select.is-valid:not([multiple])[size="1"],
 .was-validated .form-select:valid:not([multiple]):not([size]),
-.was-validated .form-select:valid:not([multiple])[size='1'] {
-  background-image: url('https://cdn4.iconfinder.com/data/icons/ios-edge-glyph-3/25/Down-Carrot-512.png') !important;
+.was-validated .form-select:valid:not([multiple])[size="1"] {
+  background-image: url("https://cdn4.iconfinder.com/data/icons/ios-edge-glyph-3/25/Down-Carrot-512.png") !important;
 }
 
 .form-select.is-valid,
